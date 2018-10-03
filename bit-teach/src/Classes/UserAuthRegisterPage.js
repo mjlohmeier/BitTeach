@@ -40,7 +40,7 @@ class UserAuthRegisterPage extends React.Component {
     let submitForm = e => {
       e.preventDefault();
       registerUser(this.state);
-      this.props.history.push("/login");
+      this.props.history.push("/tutorials");
     };
 
     return (

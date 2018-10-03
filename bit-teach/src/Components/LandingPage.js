@@ -6,6 +6,9 @@ const LandingPage = props => {
     <div className="container p-5">
       <div className="row text-center">
         <div className="col">
+        <div>
+          <h2>Welcome to BitTeach</h2>
+        </div>
           <button
             style={Styles.register}
             onClick={() => {
