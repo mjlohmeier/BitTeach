@@ -1,6 +1,6 @@
 const express = require("express");
 const routes = express.Router();
-const { validateToken } = require("./validateUser");
+const { validateToken } = require("../Validation");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { JwtPassword } = require("../../database");
@@ -20,11 +20,8 @@ routes.post("/register", (req, res) => {
         `INSERT INTO users (email, user_password) VALUES ($1, $2)RETURNING *;`,
         [newUser.email, newUser.user_password]
       )
-        .then(data => {
-          let token = jwt.sign({ id: data.id }, JwtPassword, {
-            expiresIn: "1d"
-          });
-          res.send({ token });
+        .then(user => {
+          res.send(user);
         })
         .catch(err => {
           console.log(err);
