@@ -1,5 +1,24 @@
-body {
+html,body {
+  height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+:root {
+  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+}
+
+.forms {
+  box-shadow: var(--shadow);
+}
+
+.list-items {
+  list-style: none;
+  width: 20rem;
+  height: 70%;
+  padding: 1rem;
+  text-align: center;
 }

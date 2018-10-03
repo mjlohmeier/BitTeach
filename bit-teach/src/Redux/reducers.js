@@ -1,8 +1,15 @@
 const reducer = (state, action) => {
-  if (action.type === "BUY_COIN") {
+  if (action.type === "REGISTER") {
     return {
       ...state,
-      wallet: [...state.wallet, action.buy]
+      users: [...state.users, action.user]
+    };
+  }
+  else if(action.type === 'LOGIN') {
+    localStorage.setItem('token', action.token);
+    return {
+      ...state,
+      users: [...state.users, action.credentials]
     };
   }
   return state;
