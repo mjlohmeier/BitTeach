@@ -2,7 +2,7 @@ import { createStore } from "redux";
 import reducer from "./reducers";
 
 let initialState = {
-  balance: 1000,
+  balance: 1000.00,
   wallet: [],
   marketPlace: [],
   users: [],

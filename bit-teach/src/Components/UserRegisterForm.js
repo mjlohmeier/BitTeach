@@ -4,6 +4,7 @@ const UserRegisterForm = ({
   submitForm,
   handleChange,
   email,
+  user_name,
   user_password
 }) => {
   return (
@@ -14,13 +15,26 @@ const UserRegisterForm = ({
             Email <strong style={Styles.wildcard}>*</strong>
           </label>
           <form onSubmit={submitForm} className="form-group">
-            <div>
+            <div className="form-group">
               <input
                 type="email"
                 onChange={e => handleChange(e, "email")}
                 required={true}
                 value={email}
                 placeholder="Email"
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+            <label>
+                User Name <strong style={Styles.wildcard}>*</strong>
+              </label>
+              <input
+                type="text"
+                onChange={e => handleChange(e, "user_name")}
+                required={true}
+                value={user_name}
+                placeholder="User Name"
                 className="form-control"
               />
             </div>

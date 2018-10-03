@@ -8,6 +8,8 @@ import Dashboard from "./Components/Dashboard";
 import GetCurrencyDataPage from './Classes/GetCurrencyDataPage';
 import TutorialPage from "./Tutorials/TutorialPage";
 import SellCoinTutorial from "./Tutorials/SellCoinTutorial";
+import WalletPage from './Components/WalletPage';
+import Footer from './Components/Footer';
 
 const Router = () => {
   return (
@@ -22,7 +24,9 @@ const Router = () => {
           <Route exact path="/notifications" component={NotificationPage} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/marketplace" component={GetCurrencyDataPage} /> 
+          <Route exact path="/wallet" component={WalletPage}/>
         </Switch>
+        <Footer/>
       </div>
     </HashRouter>
   );

@@ -1,13 +1,11 @@
 import React from "react";
+import NavBar from "./Navigation";
 
 const Notifications = ({ notifications }) => {
   return (
     <div>
-      {
-        <li className="list-items">
-            {notifications.newUser}
-        </li>
-      }
+      <NavBar />
+      {<li className="list-group-item">{notifications.newUser}</li>}
     </div>
   );
 };
