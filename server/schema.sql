@@ -10,3 +10,9 @@ CREATE TABLE wallet (
   past_purchases FLOAT
 );
 
+CREATE TABLE marketplace (
+  id SERIAL PRIMARY KEY,
+  currency_name VARCHAR(255) UNIQUE,
+  price FLOAT,
+  marketValue FLOAT
+);

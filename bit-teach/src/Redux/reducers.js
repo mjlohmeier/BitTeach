@@ -12,6 +12,12 @@ const reducer = (state, action) => {
       users: [...state.users, action.credentials]
     };
   }
+  else if(action.type === 'GET_CURRENCY') {
+    return {
+      ...state,
+      marketPlace:action.currencies
+    }
+  }
   return state;
 };
 
