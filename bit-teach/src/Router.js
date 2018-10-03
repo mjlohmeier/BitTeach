@@ -6,6 +6,8 @@ import UserAuthLoginPage from "./Classes/UserAuthLoginPage";
 import NotificationPage from "./Components/NotificationsPage";
 import Dashboard from "./Components/Dashboard";
 import GetCurrencyDataPage from './Classes/GetCurrencyDataPage';
+import TutorialPage from "./Tutorials/TutorialPage";
+import SellCoinTutorial from "./Tutorials/SellCoinTutorial";
 
 const Router = () => {
   return (
@@ -15,6 +17,8 @@ const Router = () => {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/register" component={UserAuthRegisterPage} />
           <Route exact path="/login" component={UserAuthLoginPage} />
+          <Route exact path="/tutorials" component={TutorialPage} />
+          <Route exact path="/tutorials/sell" component={SellCoinTutorial} />
           <Route exact path="/notifications" component={NotificationPage} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/marketplace" component={GetCurrencyDataPage} /> 

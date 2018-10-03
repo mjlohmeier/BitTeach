@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { JwtPassword } = require('../../database');
+const { JwtPassword } = require('../database');
 
 exports.validateToken = async (req, res, next) => {
   let token = req.headers.token;
