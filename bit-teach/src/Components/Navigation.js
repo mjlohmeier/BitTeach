@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 //wallet, market, notifications, and home:
 const NavBar = () => <div className='navbar'>
