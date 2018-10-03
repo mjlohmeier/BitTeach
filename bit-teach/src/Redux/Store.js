@@ -1,10 +1,15 @@
 import { createStore } from "redux";
-import reducer from './reducers';
+import reducer from "./reducers";
 
 let initialState = {
-  balance:1000,
-  wallet:[],
-  marketPlace:[]
+  balance: 1000,
+  wallet: [],
+  marketPlace: [],
+  users: [],
+  notifications: {
+    newUser:'Thank you for signing up.',
+    beginingBalance:'Your balance is $1000.00'
+  }
 };
 
 let store = createStore(
@@ -12,6 +17,5 @@ let store = createStore(
   initialState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
-
 
 export default store;
