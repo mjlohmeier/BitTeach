@@ -4,12 +4,11 @@ import coin from "../Img/coin.jpg";
 
 const SellCoinTutorial = props => {
   return (
-    <div className="container">
+    <div className="container p-5">
       <div className="row justify-content-center">
-        <div className="col">
           <div className="card-group">
-            <div className="card">
-              <img className="card-img-top img" src={coin} alt="" />
+            <div className="card" style={{width:'18rem'}}>
+            <img className="card-img-top img" src={coin} alt="" />
               <div className="card-body">
                 <div className="card-text">
                   <p>
@@ -30,7 +29,6 @@ const SellCoinTutorial = props => {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   );
