@@ -18,6 +18,12 @@ const reducer = (state, action) => {
       marketPlace:action.currencies
     }
   }
+  else if(action.type === 'BUY') {
+    return {
+      ...state,
+      wallet:[...state.wallet, action.currency]
+    }
+  }
   return state;
 };
 
