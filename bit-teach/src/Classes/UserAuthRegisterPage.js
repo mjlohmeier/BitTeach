@@ -8,12 +8,13 @@ class UserAuthRegisterPage extends React.Component {
     super(props);
     this.state = {
       email: "",
+      user_name:'',
       user_password: ""
     };
   }
 
   render() {
-    const { email, user_password } = this.state;
+    const { email, user_password, user_name } = this.state;
     const { dispatch } = this.props;
 
     let registerUser = user => {
@@ -48,6 +49,7 @@ class UserAuthRegisterPage extends React.Component {
         <div className="row justify-content-center bg-white">
           <UserRegisterForm
             email={email}
+            user_name={user_name}
             user_password={user_password}
             handleChange={handleChange}
             submitForm={submitForm}

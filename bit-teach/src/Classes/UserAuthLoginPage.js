@@ -18,7 +18,7 @@ class UserAuthLoginPage extends Component {
 
     let loginUser = user => {
       return fetch("http://localhost:5000/api/users/login", {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json"
         },

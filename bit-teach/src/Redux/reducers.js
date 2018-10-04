@@ -21,7 +21,8 @@ const reducer = (state, action) => {
   else if(action.type === 'BUY') {
     return {
       ...state,
-      wallet:[...state.wallet, action.currency]
+      wallet:[...state.wallet, action.currency],
+      balance:state.balance - action.currency.price
     }
   }
   return state;

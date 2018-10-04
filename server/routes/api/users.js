@@ -14,11 +14,12 @@ routes.post("/register", (req, res) => {
     } else {
       let newUser = {
         email: req.body.email,
+        user_name: req.body.user_name,
         user_password: hash
       };
       DB.one(
-        `INSERT INTO users (email, user_password) VALUES ($1, $2)RETURNING *;`,
-        [newUser.email, newUser.user_password]
+        `INSERT INTO users (email, user_name, user_password) VALUES ($1, $2, $3)RETURNING *;`,
+        [newUser.email, newUser.user_name, newUser.user_password]
       )
         .then(user => {
           res.send(user);

@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import Notifications from './Notifications';
+import Notifications from "./Notifications";
 
 const NotificationPage = ({ notifications }) => {
   return (
-    <div className="container p-2">
+    <div className="container p-2 text-center">
       <div className="row justify-content-center">
         <div className="col">
-          <ul className="card">
-            <Notifications notifications={notifications}/>
+          <ul className="list-group">
+            <Notifications notifications={notifications} />
           </ul>
         </div>
       </div>
