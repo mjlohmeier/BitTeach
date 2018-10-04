@@ -1,16 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import Notifications from "./Notifications";
+import Notifications from "./DisplayNotifications";
+import NavBar from "./Navigation";
 
 const NotificationPage = ({ notifications }) => {
   return (
     <div className="container p-2 text-center">
+      <NavBar />
       <div className="row justify-content-center">
-        <div className="col">
-          <ul className="list-group">
-            <Notifications notifications={notifications} />
-          </ul>
-        </div>
+        <ul className="list-group">
+          <Notifications notifications={notifications} />
+        </ul>
       </div>
     </div>
   );
