@@ -11,7 +11,7 @@ let Dashboard = ({ users, balance }) => (
         {users.map(user => {
           return (
             <p>
-              Welcome {user.username} your balance is: ${balance}
+              Welcome {user.user_name} your balance is: ${balance}
             </p>
           );
         })}
@@ -35,6 +35,6 @@ let Dashboard = ({ users, balance }) => (
 
 const ConnectDashboard = connect(state => ({
   users: state.users,
-  balance: state.balance
+  balance: state.balance,
 }));
 export default ConnectDashboard(Dashboard);

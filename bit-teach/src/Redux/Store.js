@@ -6,10 +6,7 @@ let initialState = {
   wallet: [],
   marketPlace: [],
   users: [],
-  notifications: {
-    newUser:'Thank you for signing up.',
-    beginingBalance:'Your balance is $1000.00'
-  }
+  notifications: []
 };
 
 let store = createStore(
