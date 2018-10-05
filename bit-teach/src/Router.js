@@ -4,12 +4,13 @@ import LandingPage from "./Components/LandingPage";
 import UserAuthRegisterPage from "./Classes/UserAuthRegisterPage";
 import UserAuthLoginPage from "./Classes/UserAuthLoginPage";
 import NotificationPage from "./Components/NotificationsPage";
-import Dashboard from "./Components/Dashboard";
+// import Dashboard from "./Components/Dashboard";
 import GetCurrencyDataPage from './Classes/GetCurrencyDataPage';
 import TutorialPage from "./Tutorials/TutorialPage";
 import SellCoinTutorial from "./Tutorials/SellCoinTutorial";
 import WalletPage from './Components/WalletPage';
 import Footer from './Components/Footer';
+import InitialBalance from './Classes/GetInitialBalance';
 
 const Router = () => {
   return (
@@ -22,7 +23,7 @@ const Router = () => {
           <Route exact path="/tutorials" component={TutorialPage} />
           <Route exact path="/tutorials/sell" component={SellCoinTutorial} />
           <Route exact path="/notifications" component={NotificationPage} />
-          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard" component={InitialBalance} />
           <Route exact path="/marketplace" component={GetCurrencyDataPage} /> 
           <Route exact path="/wallet" component={WalletPage}/>
         </Switch>
