@@ -7,7 +7,8 @@ const reducer = (state, action) => {
         ...state.notifications,
         { id: 0, type: "newUser", message: "Thank you for signing up." },
         { id: 1, type: "beginingBalance", message: "Your balance is $1000.00" }
-      ]
+      ],
+      balance:action.get
     };
   } else if (action.type === "LOGIN") {
     localStorage.setItem("token", action.token);

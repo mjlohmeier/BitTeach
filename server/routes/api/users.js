@@ -7,6 +7,13 @@ const { JwtPassword } = require("../../database");
 
 const { DB } = require("../../database");
 
+routes.get("/balance/:email", (req, res) => {
+  let email = req.params.email;
+  DB.one(`SELECT initial_balance FROM wallet WHERE user_email=$1;`,[email])
+    .then(data => res.json(data))
+    .catch(err => res.send(err));
+});
+
 routes.post("/register", (req, res) => {
   bcrypt.hash(req.body.user_password, 10, (err, hash) => {
     if (err) {
@@ -22,11 +29,15 @@ routes.post("/register", (req, res) => {
         [newUser.email, newUser.user_name, newUser.user_password]
       )
         .then(user => {
-          res.send(user);
+          DB.one(
+            `INSERT INTO wallet (user_email, initial_balance) VALUES($1, 1000.00)RETURNING *;`,
+            [user.email]
+          );
         })
+        .then(result => res.json(result))
         .catch(err => {
           console.log(err);
-          res.send({ error: err });
+          res.send(err);
         });
     }
   });
@@ -45,25 +56,30 @@ FROM
 WHERE
 email = $1;`,
     [users.email]
-  ).then(data => {
-    console.log(data);
-    bcrypt
-      .compare(req.body.user_password, data.user_password, (err, success) => {
-        if (err) {
-          return res.status(500).json({ err: err });
+  )
+    .then(data => {
+      console.log(data);
+      bcrypt.compare(
+        req.body.user_password,
+        data.user_password,
+        (err, success) => {
+          if (err) {
+            return res.status(500).json({ err: err });
+          }
+          if (success) {
+            console.log(data);
+            let token = jwt.sign({ id: data.id }, JwtPassword, {
+              expiresIn: "1d"
+            });
+            res.send({ token });
+          }
         }
-        if (success) {
-          console.log(data);
-          let token = jwt.sign({ id: data.id }, JwtPassword, {
-            expiresIn: "1d"
-          });
-          res.send({ token });
-        }
-      })
-  }).catch(err => {
-    console.log(err);
-    res.send({ error: err });
-  });
+      );
+    })
+    .catch(err => {
+      console.log(err);
+      res.send({ error: err });
+    });
 });
 
 module.exports = routes;
