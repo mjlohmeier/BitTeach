@@ -48,7 +48,7 @@ class UserAuthLoginPage extends Component {
 
     return (
       <div className="container p-5">
-        <div className="row justify-content-center registreForm bg-white">
+        <div className="row justify-content-center registreForm">
           <UserLoginForm
             email={email}
             user_password={user_password}

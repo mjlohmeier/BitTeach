@@ -15,13 +15,7 @@ class GetCurrencyDataPage extends Component {
   }
 
   render() {
-    return (
-      <div className="container">
-        <div className="row justify-content-center">
-          <MarketPlace />
-        </div>
-      </div>
-    );
+    return <MarketPlace />;
   }
 }
 
