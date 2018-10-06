@@ -2,13 +2,26 @@ import React from "react";
 import { connect } from "react-redux";
 import NavBar from "./Navigation";
 
-const WalletPage = ({ wallet }) => {
+const WalletPage = ({ wallet, balance }) => {
   return (
-    <div className="container">
+    <div>
       <NavBar />
-      <div className="row justify-content-center">
+      <div className="container">
+        <div>Your current balance is: ${balance}</div>
         {wallet.map(currency => {
-          return <div>{currency.price}</div>;
+          return (
+            <div className="card-group" key={currency.id}>
+              <div
+                className="card forms"
+                style={{ width: "18rem", height: "5rem" }}
+              >
+                <div className="card-title">
+                  <p className="p-2">Currency Name: {currency.currency_name}</p>
+                  <p>Market Value: {currency.marketvalue}</p>
+                </div>
+              </div>
+            </div>
+          );
         })}
       </div>
     </div>
@@ -16,6 +29,7 @@ const WalletPage = ({ wallet }) => {
 };
 
 const ConnectWallet = connect(state => ({
-  wallet: state.wallet
+  wallet: state.wallet,
+  balance: state.balance
 }));
 export default ConnectWallet(WalletPage);

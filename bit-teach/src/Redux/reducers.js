@@ -31,6 +31,19 @@ const reducer = (state, action) => {
         { id: 2, type: "boughtCoin", message: "You have purchased new coin" }
       ]
     };
+  } else if (action.type === "SELL_CURRENCY") {
+    let newWallet = state.wallet.filter(
+      item => item !== action.id
+    );
+    return {
+      ...state,
+      wallet: newWallet,
+      balance: state.balance + action.id.price,
+      notifications: [
+        ...state.notifications,
+        { id: 3, type: "SoldCoin", message: "You have sold coin" }
+      ]
+    };
   }
   return state;
 };
