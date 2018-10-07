@@ -7,9 +7,8 @@ const { JwtPassword } = require("../../database");
 
 const { DB } = require("../../database");
 
-routes.get("/balance/:email", (req, res) => {
-  let email = req.params.email;
-  DB.one(`SELECT initial_balance FROM wallet WHERE user_email=$1;`,[email])
+routes.get("/balance", (req, res) => {
+  DB.one(`SELECT initial_balance FROM wallet;`)
     .then(data => res.json(data))
     .catch(err => res.send(err));
 });
@@ -33,8 +32,8 @@ routes.post("/register", (req, res) => {
             `INSERT INTO wallet (user_email, initial_balance) VALUES($1, 1000.00)RETURNING *;`,
             [user.email]
           );
+          res.send("Created User");
         })
-        .then(result => res.json(result))
         .catch(err => {
           console.log(err);
           res.send(err);
@@ -43,7 +42,7 @@ routes.post("/register", (req, res) => {
   });
 });
 
-routes.post("/login", validateToken, (req, res) => {
+routes.post("/login", (req, res) => {
   let users = {
     email: req.body.email,
     user_password: req.body.user_password
@@ -58,20 +57,18 @@ email = $1;`,
     [users.email]
   )
     .then(data => {
-      console.log(data);
       bcrypt.compare(
         req.body.user_password,
         data.user_password,
         (err, success) => {
           if (err) {
             return res.status(500).json({ err: err });
-          }
-          if (success) {
-            console.log(data);
-            let token = jwt.sign({ id: data.id }, JwtPassword, {
+          } else if (success) {
+            const token = jwt.sign({ id: data.id }, JwtPassword, {
               expiresIn: "1d"
             });
-            res.send({ token });
+            console.log(token);
+            return res.status(200).json({ msg: "Authorized", token: token });
           }
         }
       );
@@ -83,3 +80,10 @@ email = $1;`,
 });
 
 module.exports = routes;
+
+// .then(data => {
+//   const token = jwt.sign({ id: data.id }, JwtPassword, {
+//     expiresIn: "1d"
+//   });
+//   res.status(201).json({ msg: "User Created", token: token });
+// })

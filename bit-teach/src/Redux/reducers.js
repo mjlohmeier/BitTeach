@@ -8,10 +8,10 @@ const reducer = (state, action) => {
         { id: 0, type: "newUser", message: "Thank you for signing up." },
         { id: 1, type: "beginingBalance", message: "Your balance is $1000.00" }
       ],
-      balance:action.get
+      balance: action.get
     };
   } else if (action.type === "LOGIN") {
-    localStorage.setItem("token", action.token);
+    // localStorage.setItem("token", action.token);
     return {
       ...state,
       users: [...state.users, action.credentials]
@@ -32,9 +32,7 @@ const reducer = (state, action) => {
       ]
     };
   } else if (action.type === "SELL_CURRENCY") {
-    let newWallet = state.wallet.filter(
-      item => item !== action.id
-    );
+    let newWallet = state.wallet.filter(item => item !== action.id);
     return {
       ...state,
       wallet: newWallet,

@@ -17,21 +17,26 @@ class UserAuthLoginPage extends Component {
     const { dispatch } = this.props;
 
     let loginUser = user => {
-      return fetch("http://localhost:5000/api/users/login", {
-        method: "GET",
+      fetch("http://localhost:5000/api/users/login", {
+        method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          Accept: "application/json"
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify(user),
+        redirect: "follow",
+        referrer: "no-referrer"
       })
-        .then(({ token }) => {
+        .then((token) => {
+          localStorage.setItem("token", token);
           dispatch({
             type: "LOGIN",
-            credentials: this.state,
-            token: token
+            credentials: user
           });
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log(err);
+        });
     };
 
     let handleChange = (e, updated) => {
@@ -47,7 +52,7 @@ class UserAuthLoginPage extends Component {
     };
 
     return (
-      <div className="container p-5">
+      <div className="container p-5" style={{ marginBottom: "30%" }}>
         <div className="row justify-content-center registreForm">
           <UserLoginForm
             email={email}

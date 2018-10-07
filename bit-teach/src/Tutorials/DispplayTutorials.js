@@ -4,7 +4,7 @@ import coin from "../Img/coin.jpg";
 
 const DisplayTutorials = props => {
   return (
-    <div className="container p-5">
+    <div className="container p-5" style={{marginBottom:'26%'}}>
       <div className="row justify-content-center">
           <div className="card-group">
             <div className="card" style={{width:'18rem'}}>

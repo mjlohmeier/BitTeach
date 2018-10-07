@@ -7,7 +7,9 @@ const Notifications = ({ notifications }) => {
         {notifications.map(notification => {
           return (
             <div key={notification.id}>
-              <li className="list-group-item">{notification.message}</li>
+              <li className="list-group-item mr-2">
+                {notification.message}
+              </li>
             </div>
           );
         })}

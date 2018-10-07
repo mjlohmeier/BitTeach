@@ -12,7 +12,7 @@ const WalletPage = ({ wallet, balance }) => {
           return (
             <div className="card-group" key={currency.id}>
               <div
-                className="card forms"
+                className="card forms mb-2"
                 style={{ width: "18rem", height: "5rem" }}
               >
                 <div className="card-title">
