@@ -5,12 +5,18 @@ import NavBar from "./Navigation";
 
 const NotificationPage = ({ notifications }) => {
   return (
-    <div className="container p-2 text-center">
+    <div>
       <NavBar />
-      <div className="row justify-content-center">
-        <ul className="list-group">
-          <Notifications notifications={notifications} />
-        </ul>
+      <div className="container p-2 text-center">
+        <div className="row justify-content-center">
+          <div className="card-group">
+            <div className="card-body">
+              <ul className="list-group">
+                <Notifications notifications={notifications} />
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

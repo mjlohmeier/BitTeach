@@ -27,7 +27,7 @@ class UserAuthRegisterPage extends React.Component {
       }).then(() => {
         dispatch({
           type: "REGISTER",
-          user: this.state
+          user: user
         });
       });
     };
@@ -45,7 +45,7 @@ class UserAuthRegisterPage extends React.Component {
     };
 
     return (
-      <div className="container p-5">
+      <div className="container p-5" style={{marginBottom:'23%'}}>
         <div className="row justify-content-center">
           <UserRegisterForm
             email={email}

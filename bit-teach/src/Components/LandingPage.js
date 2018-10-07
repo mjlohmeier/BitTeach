@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
+import bitCoin from "../Img/coin.jpg";
 
 const LandingPage = props => {
   return (
@@ -8,6 +9,9 @@ const LandingPage = props => {
         <div className="col">
           <div>
             <h2>Welcome to BitTeach</h2>
+          </div>
+          <div className="p-5">
+            <img className="img-landing" src={bitCoin} alt="bitcoin" />
           </div>
           <button
             className="btn btn-primary"
@@ -19,7 +23,9 @@ const LandingPage = props => {
           </button>
           <p>If you have an account</p>
           <p>
-            <Link to="/login">Click Here</Link>
+            <Link className="login-link" to="/login">
+              Click Here
+            </Link>
           </p>
         </div>
       </div>

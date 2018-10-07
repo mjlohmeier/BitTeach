@@ -1,22 +1,17 @@
 import React from "react";
-import { connect } from "react-redux";
 import NavBar from "./Navigation";
 import BitCoinResources from "./BitCoinResources";
 
-let Dashboard = ({ users, balance }) => {
+const Dashboard = ({ balance }) => {
   return (
-    <div>
+    <div style={{ marginBottom: "26%" }}>
       <NavBar />
       <div className="container p-5">
         <div className="row justify-content-center">
           <div className="jumbotron">
-            {users.map(user => {
-              return (
-                <p>
-                  Welcome {user.user_name} your balance is: ${balance}
-                </p>
-              );
-            })}
+            <div>
+              <p>Welcome your balance is: ${balance}</p>
+            </div>
           </div>
           <div className="container text-center">
             <div className="row justify-content-center">
@@ -36,11 +31,4 @@ let Dashboard = ({ users, balance }) => {
   );
 };
 
-//a starting point for future work on dashboard functionality
-//let SmartDashboard = connect(Dashboard);
-
-const ConnectDashboard = connect(state => ({
-  users: state.users,
-  balance: state.balance
-}));
-export default ConnectDashboard(Dashboard);
+export default Dashboard;
