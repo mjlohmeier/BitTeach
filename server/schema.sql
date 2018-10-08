@@ -7,7 +7,7 @@ CREATE TABLE users (
 
 CREATE TABLE wallet (
   id SERIAL PRIMARY KEY,
-  user_email VARCHAR(255),
+  user_id SERIAL,
   initial_balance FLOAT,
   current_ammount FLOAT,
   past_purchases FLOAT

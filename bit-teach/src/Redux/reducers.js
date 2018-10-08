@@ -2,19 +2,28 @@ const reducer = (state, action) => {
   if (action.type === "REGISTER") {
     return {
       ...state,
-      users: [...state.users, action.user],
       notifications: [
         ...state.notifications,
         { id: 0, type: "newUser", message: "Thank you for signing up." },
         { id: 1, type: "beginingBalance", message: "Your balance is $1000.00" }
-      ],
-      balance: action.get
+      ]
     };
-  } else if (action.type === "LOGIN") {
-    // localStorage.setItem("token", action.token);
+  } else if (action.type === "UPDATE_BALANCE") {
     return {
       ...state,
-      users: [...state.users, action.credentials]
+      balance: action.update
+    };
+  } else if (action.type === "LOGIN") {
+    localStorage.setItem('token', action.token);
+    return {
+      ...state,
+      currentUser: action.user
+    };
+  } else if (action.type === "LOGOUT") {
+    localStorage.removeItem('token');
+    return {
+      ...state,
+      currentUser: {}
     };
   } else if (action.type === "GET_CURRENCY") {
     return {

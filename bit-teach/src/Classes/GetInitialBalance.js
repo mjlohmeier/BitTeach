@@ -3,30 +3,34 @@ import { connect } from "react-redux";
 import Dashboard from "../Components/Dashboard";
 
 class InitialBalance extends Component {
-  componentDidMount() {
-    fetch(`http://localhost:5000/api/users/balance`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.props.dispatch({
-          type: "REGISTER",
-          get: data.initial_balance
-        });
-      })
-      .catch(err => console.log(err));
-  }
-
   render() {
-    const {balance} = this.props;
-    return <Dashboard balance={balance}  />;
+    const { balance, currentUser, dispatch } = this.props;
+
+    let setBalance = () => {
+      fetch(`http://localhost:5000/api/users/balance`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(currentUser)
+      })
+        .then(res => res.json())
+        .then(data => {
+          dispatch({
+            type: "UPDATE_BALANCE",
+            update: data.initial_balance
+          });
+        });
+    };
+
+    setBalance();
+
+    return <Dashboard currentUser={currentUser} balance={balance} />;
   }
 }
 
-const GetInitialBalance = connect(state => ({
+const ConnectInitialBalance = connect(state => ({
   balance: state.balance,
+  currentUser: state.currentUser
 }));
-export default GetInitialBalance(InitialBalance);
+export default ConnectInitialBalance(InitialBalance);

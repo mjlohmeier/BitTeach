@@ -1,15 +1,18 @@
 const express = require("express");
 const routes = express.Router();
-const { validateToken } = require("../Validation");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { JwtPassword } = require("../../database");
 
 const { DB } = require("../../database");
 
-routes.get("/balance", (req, res) => {
-  DB.one(`SELECT initial_balance FROM wallet;`)
-    .then(data => res.json(data))
+routes.post("/balance", (req, res) => {
+  let id = req.body.id;
+  DB.one(`SELECT initial_balance FROM wallet WHERE user_id=$1;`, [id])
+    .then(data => {
+      console.log(data);
+      res.json(data);
+    })
     .catch(err => res.send(err));
 });
 
@@ -29,10 +32,10 @@ routes.post("/register", (req, res) => {
       )
         .then(user => {
           DB.one(
-            `INSERT INTO wallet (user_email, initial_balance) VALUES($1, 1000.00)RETURNING *;`,
-            [user.email]
+            `INSERT INTO wallet (user_id, initial_balance) VALUES($1, 1000.00)RETURNING *;`,
+            [user.id]
           );
-          res.send("Created User");
+          res.send(user);
         })
         .catch(err => {
           console.log(err);
@@ -67,8 +70,8 @@ email = $1;`,
             const token = jwt.sign({ id: data.id }, JwtPassword, {
               expiresIn: "1d"
             });
-            console.log(token);
-            return res.status(200).json({ msg: "Authorized", token: token });
+            console.log({ token, data });
+            res.send({ token, data });
           }
         }
       );
@@ -80,10 +83,3 @@ email = $1;`,
 });
 
 module.exports = routes;
-
-// .then(data => {
-//   const token = jwt.sign({ id: data.id }, JwtPassword, {
-//     expiresIn: "1d"
-//   });
-//   res.status(201).json({ msg: "User Created", token: token });
-// })

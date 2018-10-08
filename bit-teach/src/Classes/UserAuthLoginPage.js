@@ -17,21 +17,21 @@ class UserAuthLoginPage extends Component {
     const { dispatch } = this.props;
 
     let loginUser = user => {
-      fetch("http://localhost:5000/api/users/login", {
+      return fetch("http://localhost:5000/api/users/login", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(user),
         redirect: "follow",
         referrer: "no-referrer"
       })
-        .then((token) => {
-          localStorage.setItem("token", token);
+        .then(res => res.json())
+        .then(body => {
           dispatch({
             type: "LOGIN",
-            credentials: user
+            user:body.data,
+            token:body.token
           });
         })
         .catch(err => {
@@ -67,6 +67,6 @@ class UserAuthLoginPage extends Component {
 }
 
 const ConnectUserAuthLoginPage = connect(state => ({
-  users: state.users
+  currentUser: state.currentUser
 }));
 export default withRouter(ConnectUserAuthLoginPage(UserAuthLoginPage));
