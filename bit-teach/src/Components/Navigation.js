@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
 //wallet, market, notifications, and home:
-const NavBar = ({ notifications, dispatch }) => {
+const NavBar = ({ notifications, dispatch, history }) => {
   return (
     <nav className="navbar bg-dark">
       <NavLink className="navLink text-light" to="/dashboard">
@@ -25,7 +25,7 @@ const NavBar = ({ notifications, dispatch }) => {
           dispatch({
             type: "LOGOUT"
           });
-          props.history.push("/");
+          history.push("/");
         }}
       >
         Log Out

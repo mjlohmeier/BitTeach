@@ -1,11 +1,11 @@
 import React from "react";
-import DisplayTutorials from './DispplayTutorials';
+import MarketTutorial from './MarketTutorial';
 
 const TutorialPage = () => {
   return (
     <div className="container">
       <div className="row justify-content-center">
-       <DisplayTutorials/>
+       <MarketTutorial/>
       </div>
     </div>
   );

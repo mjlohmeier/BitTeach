@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import coin from "../Img/coin.jpg";
 
-const SellCoinTutorial = props => {
+const WalletTutorial = props => {
   return (
     <div className="container p-5" style={{marginBottom:'24%'}}>
       <div className="row justify-content-center">
@@ -12,8 +12,7 @@ const SellCoinTutorial = props => {
               <div className="card-body">
                 <div className="card-text">
                   <p>
-                    To sell currency, click on the curreny you want to sell and it
-                    will be removed from your wallet.
+                    Private wallets are the best place to store cryptocurrency. To send your coins from your market balance to your wallet, you will need to use your TeachCoin wallet address.
                   </p>
                   <div>
                   <button
@@ -34,4 +33,4 @@ const SellCoinTutorial = props => {
   );
 };
 
-export default withRouter(SellCoinTutorial);
+export default withRouter(WalletTutorial);
