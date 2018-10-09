@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import coin from "../Img/coin.jpg";
 
-const DisplayTutorials = props => {
+const MarketTutorial = props => {
   return (
     <div className="container p-5" style={{marginBottom:'26%'}}>
       <div className="row justify-content-center">
@@ -12,14 +12,13 @@ const DisplayTutorials = props => {
               <div className="card-body">
                 <div className="card-text">
                   <p>
-                    To buy currency, click on the curreny you want to buy and it
-                    will be added to your wallet.
+                    TeachCoin is a simulated cryptocurrency. To buy it with some dollars, go to the marketplace.
                   </p>
                   <div>
                   <button
                       className="btn btn-primary"
                       onClick={() => {
-                        props.history.push("/tutorials/sell");
+                        props.history.push("/tutorials/markettutorial");
                       }}
                     >
                       Next
@@ -34,4 +33,4 @@ const DisplayTutorials = props => {
   );
 };
 
-export default withRouter(DisplayTutorials);
+export default withRouter(MarketTutorial);
