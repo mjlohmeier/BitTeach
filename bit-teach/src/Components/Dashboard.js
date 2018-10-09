@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "./Navigation";
 import BitCoinResources from "./BitCoinResources";
 
-const Dashboard = ({ balance }) => {
+const Dashboard = ({ currentUser, balance }) => {
   return (
     <div style={{ marginBottom: "26%" }}>
       <NavBar />
@@ -10,7 +10,9 @@ const Dashboard = ({ balance }) => {
         <div className="row justify-content-center">
           <div className="jumbotron">
             <div>
-              <p>Welcome your balance is: ${balance}</p>
+              <p>
+                Welcome {currentUser.user_name} your balance is: ${balance}
+              </p>
             </div>
           </div>
           <div className="container text-center">

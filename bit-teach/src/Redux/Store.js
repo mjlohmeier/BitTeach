@@ -5,7 +5,7 @@ let initialState = {
   balance: 0,
   wallet: [],
   marketPlace: [],
-  users: [],
+  currentUser:{},
   notifications: []
 };
 

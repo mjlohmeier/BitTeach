@@ -1,14 +1,14 @@
 import React from "react";
-import { connect } from "react-redux";
 import UserRegisterForm from "../Components/UserRegisterForm";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 class UserAuthRegisterPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      user_name:'',
+      user_name: "",
       user_password: ""
     };
   }
@@ -24,12 +24,16 @@ class UserAuthRegisterPage extends React.Component {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(user)
-      }).then(() => {
-        dispatch({
-          type: "REGISTER",
-          user: user
-        });
-      });
+      })
+        .then(data => data.json())
+        .then(data => {
+          console.log(data)
+          dispatch({
+            type: "REGISTER",
+            user: data
+          });
+        })
+        .catch(err => console.log(err));
     };
 
     let handleChange = (e, updated) => {
@@ -45,7 +49,7 @@ class UserAuthRegisterPage extends React.Component {
     };
 
     return (
-      <div className="container p-5" style={{marginBottom:'23%'}}>
+      <div className="container p-5" style={{ marginBottom: "23%" }}>
         <div className="row justify-content-center">
           <UserRegisterForm
             email={email}
@@ -60,7 +64,5 @@ class UserAuthRegisterPage extends React.Component {
   }
 }
 
-const ConnectAuthRegister = connect(state => ({
-  users: state.users
-}));
-export default withRouter(ConnectAuthRegister(UserAuthRegisterPage));
+const ConnectRegister = connect(state => state);
+export default ConnectRegister(withRouter(UserAuthRegisterPage));

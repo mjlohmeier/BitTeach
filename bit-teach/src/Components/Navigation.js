@@ -3,8 +3,9 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
 //wallet, market, notifications, and home:
-const NavBar = ({ notifications }) => {
-  return <nav className="navbar bg-dark">
+const NavBar = ({ notifications, dispatch }) => {
+  return (
+    <nav className="navbar bg-dark">
       <NavLink className="navLink text-light" to="/dashboard">
         Dashboard
       </NavLink>
@@ -12,15 +13,29 @@ const NavBar = ({ notifications }) => {
         Wallet
       </NavLink>
       <NavLink className="navLink text-light" to="/marketplace">
-        Market{" "}
+        Market
       </NavLink>
       <NavLink className="navLink text-light" to="/notifications">
         Notifications {notifications.length}
       </NavLink>
-    </nav>;
+      <NavLink
+        className="navLink text-light"
+        to="/"
+        onClick={() => {
+          dispatch({
+            type: "LOGOUT"
+          });
+          props.history.push("/");
+        }}
+      >
+        Log Out
+      </NavLink>
+    </nav>
+  );
 };
 
 const ConnectNotifications = connect(state => ({
-  notifications: state.notifications
+  notifications: state.notifications,
+  currentUser: state.currentUser
 }));
 export default ConnectNotifications(NavBar);
