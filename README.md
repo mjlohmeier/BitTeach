@@ -1,2 +1,2 @@
 # BitTeach
-Educational cryptocurrency
+Educational cryptocurrency simulation
