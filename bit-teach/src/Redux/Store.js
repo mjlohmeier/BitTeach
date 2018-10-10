@@ -7,7 +7,7 @@ let initialState = {
   wallet: [],
   marketPlace: [],
   bitTeach:{},
-  boughtCurrency:[],
+  boughtCurrencies:[],
   currentUser:JSON.parse(localStorage.getItem('user') || '{}'),
   notifications: []
 };

@@ -5,7 +5,6 @@ import NavBar from "./Navigation";
 import SendCoinToWalletForm from "../Classes/SendCoinToWalletForm";
 
 const MarketPlace = ({ marketPlace, dispatch, history, balance, bitTeach }) => {
-  console.log(bitTeach.currency_name);
   return (
     <div>
       <NavBar />
@@ -46,22 +45,7 @@ const MarketPlace = ({ marketPlace, dispatch, history, balance, bitTeach }) => {
           <div className="container mt-2">
             <div className="row justify-content-center">
               <div className="col-4">
-                  <div className="card forms mr-3" style={{ width: "18rem" }}>
-                    <div className="card-title p-2">
-                      <p> Currency Name: {bitTeach.currency_name}</p>
-                      <div className="card-body">
-                        <p>Currency Price: {bitTeach.price}</p>
-                        {}
-                        <button onClick={() => dispatch({
-                          type:'ADD_TO_BALACE',
-                          addToBalance:balance
-                        })} className="btn btn-success">Buy Dollar</button>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-              <div className="col-4">
-                <SendCoinToWalletForm/>
+                <SendCoinToWalletForm />
               </div>
             </div>
           </div>

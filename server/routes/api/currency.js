@@ -8,10 +8,4 @@ routes.get("/currency/marketplace", (req, res) => {
     .catch(err => res.send(err));
 });
 
-routes.get("/currency/bitTeach", (req, res) => {
-  DB.any("SELECT * FROM bitteach;")
-    .then(currency => res.json(currency))
-    .catch(err => res.send(err));
-});
-
 module.exports = routes;

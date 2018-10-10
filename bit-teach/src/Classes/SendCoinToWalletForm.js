@@ -12,16 +12,21 @@ class SendCoinToWalletForm extends Component {
 
   render() {
     const { bit_coin_address } = this.state;
-    const { dispatch } = this.props;
+    const { dispatch, boughtCurrencies } = this.props;
 
     let sendToWallet = async state => {
-      await fetch("http://localhost:5000/api/wallet/coin_address", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(state)
-      })
+      await fetch(
+        `http://localhost:5000/api/users/${
+          this.props.currentUser.bit_coin_address
+        }/wallet`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(state)
+        }
+      )
         .then(result => console.log(result))
         .catch(err => console.log(err));
     };
@@ -37,7 +42,7 @@ class SendCoinToWalletForm extends Component {
       sendToWallet(this.state);
       dispatch({
         type: "ADD_TO_WALLET",
-        add: this.state
+        id:boughtCurrencies
       });
     };
 
@@ -56,6 +61,7 @@ class SendCoinToWalletForm extends Component {
 }
 
 const ConnectSendToWalletForm = connect(state => ({
-  wallet: state.wallet
+  boughtCurrencies: state.boughtCurrencies,
+  currentUser: state.currentUser
 }));
 export default ConnectSendToWalletForm(SendCoinToWalletForm);

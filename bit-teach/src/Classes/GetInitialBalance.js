@@ -10,10 +10,24 @@ class InitialBalance extends Component {
       .then(res => res.json())
       .then(data => {
         this.props.dispatch({
-          type: "UPDATE_BALANCE",
-          update: data.initial_balance
+          type: "SET_BALANCE",
+          setBalance: data.initial_balance
         });
-      });
+      })
+      .then(() => {
+        fetch(
+          `http://localhost:5000/api/user/${
+            this.props.currentUser.id
+          }/coin_address`
+        )
+          .then(res => res.json())
+          .then(data => {
+            this.props.dispatch({
+              type: "SET_COIN_ADDRESS",
+              setAddress: data
+            });
+          });
+      }).catch(err => console.log(err));
   }
 
   render() {

@@ -6,12 +6,13 @@ const reducer = (state, action) => {
         ...state.notifications,
         { id: 0, type: "newUser", message: "Thank you for signing up." },
         { id: 1, type: "beginingBalance", message: "Your balance is $1000.00" }
-      ]
+      ],
+      currentUser: action.user
     };
-  } else if (action.type === "UPDATE_BALANCE") {
+  } else if (action.type === "SET_BALANCE") {
     return {
       ...state,
-      balance: action.update
+      balance: action.setBalance
     };
   } else if (action.type === "LOGIN") {
     localStorage.setItem("token", action.token);
@@ -39,7 +40,7 @@ const reducer = (state, action) => {
   } else if (action.type === "BUY_COIN") {
     return {
       ...state,
-      boughtCurrency: [...state.boughtCurrency, action.currency],
+      boughtCurrencies: [...state.boughtCurrencies, action.currency],
       balance: state.balance + action.currency.price,
       // teachCoinBalance:state.teachCoinBalance+ action.currency.price,
       notifications: [
@@ -53,18 +54,19 @@ const reducer = (state, action) => {
       wallet: [...state.wallet, action.setAddress]
     };
   } else if (action.type === "ADD_TO_WALLET") {
-    let addToWallet = state.boughtCurrency.filter(
-      currency => currency !== action.id
+    let filteredCurrencies = state.boughtCurrencies.filter(
+      currency => currency.id !== action.id
     );
     return {
       ...state,
-      boughtCurrency: addToWallet,
+      boughtCurrencies: filteredCurrencies,
       wallet: [...state.wallet, action.id]
     };
-  } else if(action.type === 'ADD_TO_BALACE') {
+  } else if(action.type === 'ADD_TO_TEACH_COIN_BALACE') {
     return {
       ...state,
-      balance:action.addToBalance + 100
+      teachCoinBalance:action.addToTeachCoinBalance + 100,
+      balance:state.balance - 100 
     }
   } 
   else if (action.type === "SELL_CURRENCY") {

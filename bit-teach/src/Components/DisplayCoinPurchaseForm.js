@@ -3,7 +3,7 @@ import React from "react";
 const DisplayCoinPurchaseForm = ({
   submitForm,
   handleChange,
-  bit_coin_address
+  bit_coin_address 
 }) => {
   return (
     <div className="form-group text-center">
@@ -23,7 +23,7 @@ const DisplayCoinPurchaseForm = ({
             />
           </div>
         </div>
-        <button className="btn btn-primary">Add Send To Wallet</button>
+        <button className="btn btn-primary">Send To Wallet</button>
       </form>
     </div>
   );

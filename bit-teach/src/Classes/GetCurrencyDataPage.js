@@ -13,15 +13,17 @@ class GetCurrencyDataPage extends Component {
         });
       })
       .then(() => {
-        fetch(`http://localhost:5000/api/currency/bitTeach`)
+        fetch("http://localhost:5000/api/currency/marketplace")
           .then(res => res.json())
           .then(data => {
+            let bitTeach = data[0];
             this.props.dispatch({
               type: "SET_BITTEACH",
-              setBitTeach: data[0]
+              setBitTeach: bitTeach
             });
           });
-      });
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
