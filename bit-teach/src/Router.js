@@ -4,7 +4,6 @@ import LandingPage from "./Components/LandingPage";
 import UserAuthRegisterPage from "./Classes/UserAuthRegisterPage";
 import UserAuthLoginPage from "./Classes/UserAuthLoginPage";
 import NotificationPage from "./Components/NotificationsPage";
-// import Dashboard from "./Components/Dashboard";
 import GetCurrencyDataPage from './Classes/GetCurrencyDataPage';
 import TutorialPage from "./Tutorials/TutorialPage";
 import WalletTutorial from "./Tutorials/WalletTutorial";

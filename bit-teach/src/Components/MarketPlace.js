@@ -2,8 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import NavBar from "./Navigation";
+import SendCoinToWalletForm from "../Classes/SendCoinToWalletForm";
 
-const MarketPlace = ({ marketPlace, dispatch, history }) => {
+const MarketPlace = ({ marketPlace, dispatch, history, balance, bitTeach }) => {
   return (
     <div>
       <NavBar />
@@ -18,29 +19,21 @@ const MarketPlace = ({ marketPlace, dispatch, history }) => {
                   </div>
                   <div className="card-body">
                     <div className="card-text">
-                      <p>Price: $ {currency.price} </p>
+                      <p className="card-text"> Balance is $ {balance}</p>
+                      <p>Coin Price: $ {currency.price} </p>
                     </div>
                     <div className="row">
                       <div className="col-6">
                         <button
                           className="btn btn-success"
                           onClick={() =>
-                            dispatch({ type: "BUY", 
-                            currency: currency })
+                            dispatch({
+                              type: "BUY_COIN",
+                              currency: currency
+                            })
                           }
                         >
-                          Buy
-                        </button>
-                      </div>
-                      <div className="col-6">
-                        <button
-                          className="btn btn-danger"
-                          onClick={() =>
-                            dispatch({ type: "SELL_CURRENCY", 
-                            id: currency })
-                          }
-                        >
-                          Sell
+                          Get More Dollars
                         </button>
                       </div>
                     </div>
@@ -49,6 +42,13 @@ const MarketPlace = ({ marketPlace, dispatch, history }) => {
               </div>
             );
           })}
+          <div className="container mt-2">
+            <div className="row justify-content-center">
+              <div className="col-4">
+                <SendCoinToWalletForm />
+              </div>
+            </div>
+          </div>
           <div className="container mt-5">
             <button
               onClick={() => {
@@ -66,6 +66,9 @@ const MarketPlace = ({ marketPlace, dispatch, history }) => {
 };
 
 const ConnectMarketPlace = connect(state => ({
-  marketPlace: state.marketPlace
+  marketPlace: state.marketPlace,
+  balance: state.balance,
+  bitTeach: state.bitTeach
 }));
 export default withRouter(ConnectMarketPlace(MarketPlace));
+//buy teachcoin: subtract dollar add to teachcoin balance

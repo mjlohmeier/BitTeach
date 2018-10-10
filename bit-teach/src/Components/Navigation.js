@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 //wallet, market, notifications, and home:
@@ -38,4 +38,4 @@ const ConnectNotifications = connect(state => ({
   notifications: state.notifications,
   currentUser: state.currentUser
 }));
-export default ConnectNotifications(NavBar);
+export default withRouter(ConnectNotifications(NavBar));

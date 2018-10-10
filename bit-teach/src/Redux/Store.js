@@ -3,9 +3,12 @@ import reducer from "./reducers";
 
 let initialState = {
   balance: 0,
+  teachCoinBalance:0,
   wallet: [],
   marketPlace: [],
-  currentUser:{},
+  bitTeach:{},
+  boughtCurrencies:[],
+  currentUser:JSON.parse(localStorage.getItem('user') || '{}'),
   notifications: []
 };
 

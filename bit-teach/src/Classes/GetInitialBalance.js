@@ -3,28 +3,35 @@ import { connect } from "react-redux";
 import Dashboard from "../Components/Dashboard";
 
 class InitialBalance extends Component {
-  render() {
-    const { balance, currentUser, dispatch } = this.props;
-
-    let setBalance = () => {
-      fetch(`http://localhost:5000/api/users/balance`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(currentUser)
-      })
-        .then(res => res.json())
-        .then(data => {
-          dispatch({
-            type: "UPDATE_BALANCE",
-            update: data.initial_balance
-          });
+  componentDidMount() {
+    fetch(
+      `http://localhost:5000/api/users/${this.props.currentUser.id}/balance`
+    )
+      .then(res => res.json())
+      .then(data => {
+        this.props.dispatch({
+          type: "SET_BALANCE",
+          setBalance: data.initial_balance
         });
-    };
+      })
+      .then(() => {
+        fetch(
+          `http://localhost:5000/api/user/${
+            this.props.currentUser.id
+          }/coin_address`
+        )
+          .then(res => res.json())
+          .then(data => {
+            this.props.dispatch({
+              type: "SET_COIN_ADDRESS",
+              setAddress: data
+            });
+          });
+      }).catch(err => console.log(err));
+  }
 
-    setBalance();
-
+  render() {
+    const { balance, currentUser } = this.props;
     return <Dashboard currentUser={currentUser} balance={balance} />;
   }
 }

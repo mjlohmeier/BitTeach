@@ -6,16 +6,6 @@ const { JwtPassword } = require("../../database");
 
 const { DB } = require("../../database");
 
-routes.post("/balance", (req, res) => {
-  let id = req.body.id;
-  DB.one(`SELECT initial_balance FROM wallet WHERE user_id=$1;`, [id])
-    .then(data => {
-      console.log(data);
-      res.json(data);
-    })
-    .catch(err => res.send(err));
-});
-
 routes.post("/register", (req, res) => {
   bcrypt.hash(req.body.user_password, 10, (err, hash) => {
     if (err) {
@@ -24,19 +14,19 @@ routes.post("/register", (req, res) => {
       let newUser = {
         email: req.body.email,
         user_name: req.body.user_name,
-        user_password: hash
+        user_password: hash,
+        initial_balance: 1000
       };
       DB.one(
-        `INSERT INTO users (email, user_name, user_password) VALUES ($1, $2, $3)RETURNING *;`,
-        [newUser.email, newUser.user_name, newUser.user_password]
+        `INSERT INTO users (email, user_name, user_password, initial_balance) VALUES ($1, $2, $3, $4)RETURNING *;`,
+        [
+          newUser.email,
+          newUser.user_name,
+          newUser.user_password,
+          newUser.initial_balance
+        ]
       )
-        .then(user => {
-          DB.one(
-            `INSERT INTO wallet (user_id, initial_balance) VALUES($1, 1000.00)RETURNING *;`,
-            [user.id]
-          );
-          res.send(user);
-        })
+        .then(user => res.send(user))
         .catch(err => {
           console.log(err);
           res.send(err);
