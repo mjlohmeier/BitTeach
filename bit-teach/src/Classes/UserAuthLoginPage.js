@@ -53,7 +53,7 @@ class UserAuthLoginPage extends Component {
 
     return (
       <div className="container p-5" style={{ marginBottom: "30%" }}>
-        <div className="row justify-content-center registreForm">
+        <div className="row justify-content-center">
           <UserLoginForm
             email={email}
             user_password={user_password}

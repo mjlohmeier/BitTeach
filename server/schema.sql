@@ -7,6 +7,7 @@ CREATE TABLE users (
 
 CREATE TABLE wallet (
   id SERIAL PRIMARY KEY,
+  bit_coin_address uuid DEFAULT uuid_generate_v4 (),
   user_id SERIAL,
   initial_balance FLOAT,
   current_ammount FLOAT,
@@ -16,6 +17,13 @@ CREATE TABLE wallet (
 CREATE TABLE marketplace (
   id SERIAL PRIMARY KEY,
   user_id SERIAL,
+  currency_name VARCHAR(255) UNIQUE,
+  price FLOAT,
+  marketValue FLOAT
+);
+
+CREATE TABLE bitTeach (
+  id SERIAL PRIMARY KEY,
   currency_name VARCHAR(255) UNIQUE,
   price FLOAT,
   marketValue FLOAT

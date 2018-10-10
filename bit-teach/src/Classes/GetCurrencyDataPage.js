@@ -4,13 +4,23 @@ import MarketPlace from "../Components/MarketPlace";
 
 class GetCurrencyDataPage extends Component {
   componentDidMount() {
-    fetch("http://localhost:5000/api/currency")
+    fetch("http://localhost:5000/api/currency/marketplace")
       .then(res => res.json())
       .then(data => {
         this.props.dispatch({
-          type: "GET_CURRENCY",
-          currencies: data
+          type: "SET_MARKETPLACE",
+          marketplaceValues: data
         });
+      })
+      .then(() => {
+        fetch(`http://localhost:5000/api/currency/bitTeach`)
+          .then(res => res.json())
+          .then(data => {
+            this.props.dispatch({
+              type: "SET_BITTEACH",
+              setBitTeach: data[0]
+            });
+          });
       });
   }
 
@@ -20,6 +30,7 @@ class GetCurrencyDataPage extends Component {
 }
 
 const ConnectGetCurrencyDataPage = connect(state => ({
-  marketPlace: state.marketPlace
+  marketPlace: state.marketPlace,
+  bitTeach: state.bitTeach
 }));
 export default ConnectGetCurrencyDataPage(GetCurrencyDataPage);

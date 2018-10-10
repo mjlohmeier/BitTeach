@@ -8,6 +8,13 @@ const WalletPage = ({ wallet, balance }) => {
       <NavBar />
       <div className="container">
         <div>Your current balance is: ${balance}</div>
+        {wallet.map(address => {
+          return (
+            <div>
+              <p> Your coin address: {address.bit_coin_address}</p>
+            </div>
+          );
+        })}
         {wallet.map(currency => {
           return (
             <div className="card-group" key={currency.id}>

@@ -6,16 +6,6 @@ const { JwtPassword } = require("../../database");
 
 const { DB } = require("../../database");
 
-routes.post("/balance", (req, res) => {
-  let id = req.body.id;
-  DB.one(`SELECT initial_balance FROM wallet WHERE user_id=$1;`, [id])
-    .then(data => {
-      console.log(data);
-      res.json(data);
-    })
-    .catch(err => res.send(err));
-});
-
 routes.post("/register", (req, res) => {
   bcrypt.hash(req.body.user_password, 10, (err, hash) => {
     if (err) {
