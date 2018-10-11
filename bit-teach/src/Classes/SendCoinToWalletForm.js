@@ -13,8 +13,6 @@ class SendCoinToWalletForm extends Component {
   render() {
     const { bit_coin_address } = this.state;
     const { dispatch, boughtCurrencies } = this.props;
-    let currencyBalance = boughtCurrencies.map(item => item.balance);
-
     let sendToWallet = async state => {
       await fetch(
         `http://localhost:5000/api/users/${
@@ -27,7 +25,7 @@ class SendCoinToWalletForm extends Component {
           },
           body: JSON.stringify({
             userID:this.props.currentUser.id,
-            boughtCurrency: currencyBalance
+            boughtCurrency: this.props.boughtCurrencies
           })
         }
       )

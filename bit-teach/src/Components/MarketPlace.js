@@ -4,12 +4,13 @@ import { withRouter } from "react-router-dom";
 import NavBar from "./Navigation";
 import SendCoinToWalletForm from "../Classes/SendCoinToWalletForm";
 
-const MarketPlace = ({ marketPlace, dispatch, history, balance }) => {
+const MarketPlace = ({ marketPlace, dispatch, history, balance, bitTeach, teachCoinBalance }) => {
   return (
     <div>
       <NavBar />
       <div className="container pt-3">
         <div className="row justify-content-center">
+        {console.log(teachCoinBalance)}
           {marketPlace.map(currency => {
             return (
               <div className="card-group" key={currency.id}>
@@ -19,7 +20,8 @@ const MarketPlace = ({ marketPlace, dispatch, history, balance }) => {
                   </div>
                   <div className="card-body">
                     <div className="card-text">
-                      <p className="card-text"> Balance is $ {balance}</p>
+                      <p className="card-text"> Dollar balance is $ {balance}</p>
+                      <p className="card-text"> TeachCoin balance is TEA {teachCoinBalance}</p>
                       <p>Coin Price: $ {currency.balance} </p>
                     </div>
                     <div className="row">
@@ -28,12 +30,24 @@ const MarketPlace = ({ marketPlace, dispatch, history, balance }) => {
                           className="btn btn-success"
                           onClick={() =>
                             dispatch({
-                              type: "BUY_COIN",
+                              type: "GET_DOLLARS",
                               currency: currency
                             })
                           }
                         >
                           Get More Dollars
+                        </button>
+                        <button
+                          className="btn btn-success mt-2"
+                          onClick={() =>
+                            dispatch({
+                              //type definition must be written
+                              type: "BUY_TEACHCOIN",
+                              storeTeachCoin: teachCoinBalance
+                            })
+                          }
+                        >
+                          Spend $$$ on TEA
                         </button>
                       </div>
                     </div>
@@ -68,6 +82,8 @@ const MarketPlace = ({ marketPlace, dispatch, history, balance }) => {
 const ConnectMarketPlace = connect(state => ({
   marketPlace: state.marketPlace,
   balance: state.balance,
+  bitTeach: state.bitTeach,
+  teachCoinBalance: state.teachCoinBalance
 }));
 export default withRouter(ConnectMarketPlace(MarketPlace));
 //buy teachcoin: subtract dollar add to teachcoin balance

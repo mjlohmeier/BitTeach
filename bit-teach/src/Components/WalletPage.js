@@ -2,12 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import NavBar from "./Navigation";
 
-const WalletPage = ({ wallet, balance }) => {
+const WalletPage = ({ wallet, teachCoinBalance }) => {
   return (
     <div>
       <NavBar />
       <div className="container">
-        <div>Your current balance is: ${balance}</div>
+        <div>Your current balance is TEA {teachCoinBalance}</div>
             <div>
               <p> Your coin address: {wallet.bitCoinAddress}</p>
             </div>
@@ -33,6 +33,6 @@ const WalletPage = ({ wallet, balance }) => {
 
 const ConnectWallet = connect(state => ({
   wallet: state.wallet,
-  balance: state.balance
+  teachCoinBalance: state.teachCoinBalance
 }));
 export default ConnectWallet(WalletPage);

@@ -16,7 +16,7 @@ class GetCurrencyDataPage extends Component {
         fetch("http://localhost:5000/api/currency/marketplace")
           .then(res => res.json())
           .then(data => {
-            let bitTeach = data[0];
+            let bitTeach = data[0].balance;
             this.props.dispatch({
               type: "SET_BITTEACH",
               setBitTeach: bitTeach

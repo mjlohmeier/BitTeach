@@ -18,7 +18,5 @@ CREATE TABLE wallet (
 CREATE TABLE marketplace (
   id SERIAL PRIMARY KEY,
   currency_name VARCHAR(255) UNIQUE,
-  balance FLOAT,
-  user_id INTEGER REFERENCES users (id)
+  balance FLOAT
 );
-

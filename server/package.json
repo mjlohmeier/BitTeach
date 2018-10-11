@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "resetdb": "dropdb bitTeach; createdb bitTeach; psql -d bitTeach -f schema.sql; psql -d bitTeach -f seeds.sql"
   },
   "keywords": [],
   "author": "",

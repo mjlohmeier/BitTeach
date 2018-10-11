@@ -27,11 +27,11 @@ const reducer = (state, action) => {
     return {
       ...state,
       currentUser: {},
-      balance:0,
-      wallet:{},
-      marketPlace:[],
-      bitTeach:{},
-      boughtCurrencies:[]
+      balance: 0,
+      wallet: {},
+      marketPlace: [],
+      bitTeach: {},
+      boughtCurrencies: []
     };
   } else if (action.type === "SET_MARKETPLACE") {
     return {
@@ -41,12 +41,11 @@ const reducer = (state, action) => {
   } else if (action.type === "SET_BITTEACH") {
     return {
       ...state,
-      bitTeach: action.setBitTeach
+      teachCoinBalance: action.setBitTeach
     };
-  } else if (action.type === "BUY_COIN") {
+  } else if (action.type === "GET_DOLLARS") {
     return {
       ...state,
-      boughtCurrencies: [...state.boughtCurrencies, action.currency],
       balance: state.balance + action.currency.balance,
       // teachCoinBalance:state.teachCoinBalance+ action.currency.price,
       notifications: [
@@ -57,9 +56,9 @@ const reducer = (state, action) => {
   } else if (action.type === "SET_COIN_ADDRESS") {
     return {
       ...state,
-      wallet:{
+      wallet: {
         ...state.wallet,
-        bitCoinAddress:action.setAddress
+        bitCoinAddress: action.setAddress
       }
     };
   } else if (action.type === "ADD_TO_WALLET") {
@@ -71,25 +70,32 @@ const reducer = (state, action) => {
       boughtCurrencies: filteredCurrencies,
       wallet: {
         ...state.wallet,
-        currencies:action.addToWallet
+        currencies: action.addToWallet
       }
     };
-  } else if(action.type === 'ADD_TO_TEACH_COIN_BALACE') {
+  }// else if (action.type === 'ADD_TO_TEACH_COIN_BALACE') {
+  //   let arrayOfBoughtCurrencies = state.boughtCurrencies.slice()
+  //   arrayOfBoughtCurrencies.push(action.storeTeachCoin)
+  //   return {
+  //     ...state,
+  //     boughtCurrencies: arrayOfBoughtCurrencies,
+  //     teachCoinBalance: action.addToTeachCoinBalance + 100,
+  //     balance: state.balance - 100
+  //   }
+  //}
+  else if (action.type === "BUY_TEACHCOIN") {
+    let arrayOfBoughtCurrencies = state.boughtCurrencies.slice()
+    arrayOfBoughtCurrencies.push(action.storeTeachCoin)
     return {
       ...state,
-      teachCoinBalance:action.addToTeachCoinBalance + 100,
-      balance:state.balance - 100 
-    }
-  } 
-  else if (action.type === "SELL_CURRENCY") {
-    let newWallet = state.wallet.filter(item => item !== action.id);
-    return {
-      ...state,
-      wallet: newWallet,
-      balance: state.balance + action.id.price,
+      //balance should be redefined to specifically refer to dollars
+      boughtCurrencies: arrayOfBoughtCurrencies,
+      balance: state.balance - 100,
+      teachCoinBalance: state.teachCoinBalance + 100,
       notifications: [
         ...state.notifications,
-        { id: 3, type: "SoldCoin", message: "You have sold coin" }
+        { id: 3, type: "BoughtCoin", message: "You have bought coin" }
+        //probably shouldn't give a notification every time you click
       ]
     };
   }
