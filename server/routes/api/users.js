@@ -27,10 +27,7 @@ routes.post("/register", (req, res) => {
         ]
       )
         .then(user => res.send(user))
-        .catch(err => {
-          console.log(err);
-          res.send(err);
-        });
+        .catch(err => res.send(err));
     }
   });
 });
@@ -60,7 +57,6 @@ email = $1;`,
             const token = jwt.sign({ id: data.id }, JwtPassword, {
               expiresIn: "1d"
             });
-            console.log({ token, data });
             res.send({ token, data });
           }
         }
