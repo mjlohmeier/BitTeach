@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import NavBar from "./Navigation";
 import SendCoinToWalletForm from "../Classes/SendCoinToWalletForm";
 
-const MarketPlace = ({ marketPlace, dispatch, history, balance, bitTeach }) => {
+const MarketPlace = ({ marketPlace, dispatch, history, balance }) => {
   return (
     <div>
       <NavBar />
@@ -20,7 +20,7 @@ const MarketPlace = ({ marketPlace, dispatch, history, balance, bitTeach }) => {
                   <div className="card-body">
                     <div className="card-text">
                       <p className="card-text"> Balance is $ {balance}</p>
-                      <p>Coin Price: $ {currency.price} </p>
+                      <p>Coin Price: $ {currency.balance} </p>
                     </div>
                     <div className="row">
                       <div className="col-6">
@@ -68,7 +68,6 @@ const MarketPlace = ({ marketPlace, dispatch, history, balance, bitTeach }) => {
 const ConnectMarketPlace = connect(state => ({
   marketPlace: state.marketPlace,
   balance: state.balance,
-  bitTeach: state.bitTeach
 }));
 export default withRouter(ConnectMarketPlace(MarketPlace));
 //buy teachcoin: subtract dollar add to teachcoin balance

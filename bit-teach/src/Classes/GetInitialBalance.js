@@ -24,7 +24,7 @@ class InitialBalance extends Component {
           .then(data => {
             this.props.dispatch({
               type: "SET_COIN_ADDRESS",
-              setAddress: data
+              setAddress: data.bit_coin_address
             });
           });
       }).catch(err => console.log(err));

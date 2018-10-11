@@ -27,7 +27,6 @@ class UserAuthRegisterPage extends React.Component {
       })
         .then(data => data.json())
         .then(data => {
-          console.log(data)
           dispatch({
             type: "REGISTER",
             user: data
