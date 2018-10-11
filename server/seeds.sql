@@ -1,3 +1,3 @@
-INSERT INTO marketplace (currency_name, price, marketValue) VALUES ('bitTeach', 100, 10);
-INSERT INTO marketplace (currency_name, price, marketValue) VALUES ('AJT', 100, 10);
-INSERT INTO marketplace (currency_name, price, marketValue) VALUES ('AAPL', 100, 10);
+INSERT INTO marketplace (currency_name, balance, user_id) VALUES ('AJT', 100,1);
+INSERT INTO marketplace (currency_name, balance, user_id) VALUES ('AAPL', 100, 1);
+INSERT INTO marketplace (currency_name, balance, user_id) VALUES ('bitTeach', 100, 1);

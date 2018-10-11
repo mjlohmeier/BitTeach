@@ -11,15 +11,14 @@ CREATE TABLE users (
 
 CREATE TABLE wallet (
   id SERIAL PRIMARY KEY,
-  user_id SERIAL,
-  current_amount FLOAT,
-  currency_id SERIAL
+  user_id SERIAL REFERENCES users (id),
+  current_amount FLOAT
 );
 
 CREATE TABLE marketplace (
   id SERIAL PRIMARY KEY,
   currency_name VARCHAR(255) UNIQUE,
-  price FLOAT,
-  marketValue FLOAT
+  balance FLOAT,
+  user_id INTEGER REFERENCES users (id)
 );
 
