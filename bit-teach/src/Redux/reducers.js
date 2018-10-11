@@ -23,9 +23,15 @@ const reducer = (state, action) => {
     };
   } else if (action.type === "LOGOUT") {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     return {
       ...state,
-      currentUser: {}
+      currentUser: {},
+      balance:0,
+      wallet:{},
+      marketPlace:[],
+      bitTeach:{},
+      boughtCurrencies:[]
     };
   } else if (action.type === "SET_MARKETPLACE") {
     return {
@@ -41,7 +47,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       boughtCurrencies: [...state.boughtCurrencies, action.currency],
-      balance: state.balance + action.currency.price,
+      balance: state.balance + action.currency.balance,
       // teachCoinBalance:state.teachCoinBalance+ action.currency.price,
       notifications: [
         ...state.notifications,
@@ -51,16 +57,22 @@ const reducer = (state, action) => {
   } else if (action.type === "SET_COIN_ADDRESS") {
     return {
       ...state,
-      wallet: [...state.wallet, action.setAddress]
+      wallet:{
+        ...state.wallet,
+        bitCoinAddress:action.setAddress
+      }
     };
   } else if (action.type === "ADD_TO_WALLET") {
     let filteredCurrencies = state.boughtCurrencies.filter(
-      currency => currency.id !== action.id
+      item => item !== action.id
     );
     return {
       ...state,
       boughtCurrencies: filteredCurrencies,
-      wallet: [...state.wallet, action.id]
+      wallet: {
+        ...state.wallet,
+        currencies:action.addToWallet
+      }
     };
   } else if(action.type === 'ADD_TO_TEACH_COIN_BALACE') {
     return {

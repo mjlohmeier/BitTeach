@@ -13,6 +13,7 @@ class SendCoinToWalletForm extends Component {
   render() {
     const { bit_coin_address } = this.state;
     const { dispatch, boughtCurrencies } = this.props;
+    let currencyBalance = boughtCurrencies.map(item => item.balance);
 
     let sendToWallet = async state => {
       await fetch(
@@ -24,7 +25,10 @@ class SendCoinToWalletForm extends Component {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify(state)
+          body: JSON.stringify({
+            userID:this.props.currentUser.id,
+            boughtCurrency: currencyBalance
+          })
         }
       )
         .then(result => console.log(result))
@@ -42,7 +46,7 @@ class SendCoinToWalletForm extends Component {
       sendToWallet(this.state);
       dispatch({
         type: "ADD_TO_WALLET",
-        id:boughtCurrencies
+        addToWallet: boughtCurrencies
       });
     };
 

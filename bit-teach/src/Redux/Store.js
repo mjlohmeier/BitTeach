@@ -4,7 +4,10 @@ import reducer from "./reducers";
 let initialState = {
   balance: 0,
   teachCoinBalance:0,
-  wallet: [],
+  wallet: {
+    bitCoinAddress:'',
+    currencies:[]
+  },
   marketPlace: [],
   bitTeach:{},
   boughtCurrencies:[],
