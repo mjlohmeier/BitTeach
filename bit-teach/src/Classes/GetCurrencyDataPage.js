@@ -16,6 +16,7 @@ class GetCurrencyDataPage extends Component {
           type: "SET_BITTEACH",
           setBitTeach: bitTeach,
         });
+
       })
       .catch(err => console.log(err));
   }
