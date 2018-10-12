@@ -49,20 +49,3 @@ routes.post("/users/:bitcoinaddress/wallet", (req, res) => {
 });
 
 module.exports = routes;
-
-// .then(user => {
-//   console.log(user)
-//   boughtCurrency.map(currency => {
-//     console.log(currency)
-//     //check if its in there if that then throw err
-//     DB.one(`UPDATE marketplace SET balance = balance + ${currency.balance} WHERE currency_name=${currency.currency_name}AND user_id=${user.id}`)
-//     .then(data => console.log(data))
-//     //check if its not in there then add it to the database
-//   })
-// })
-
-// .then(user => {
-//   DB.one(
-//     `SELECT * FROM users INNER JOIN wallet ON users.id = wallet.user_id WHERE user_id=$1;`,
-//     [user.id,bitCoinAddress]
-//   )

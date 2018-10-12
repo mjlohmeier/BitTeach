@@ -94,4 +94,3 @@ const ConnectMarketPlace = connect(state => ({
   teachCoinBalance: state.teachCoinBalance
 }));
 export default withRouter(ConnectMarketPlace(MarketPlace));
-//buy teachcoin: subtract dollar add to teachcoin balance

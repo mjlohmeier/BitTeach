@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-//wallet, market, notifications, and home:
 const NavBar = ({ notifications, dispatch, history }) => {
   return (
     <nav className="navbar bg-dark">
