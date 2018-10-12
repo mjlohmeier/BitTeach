@@ -17,7 +17,7 @@ class UserAuthLoginPage extends Component {
     const { dispatch } = this.props;
   
     let loginUser = user => {
-      return fetch("http://localhost:5000/api/users/login", {
+      return fetch(`${process.env.REACT_APP_HOST}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -32,6 +32,11 @@ class UserAuthLoginPage extends Component {
             type: "LOGIN",
             user:body.data,
             token:body.token
+          });
+          this.props.dispatch({
+            type: "SET_DOLLAR-BALANCE",
+            setBalance: body.data.initial_balance,
+            dollarBalance:body.data.initial_balance
           });
         })
         .catch(err => {

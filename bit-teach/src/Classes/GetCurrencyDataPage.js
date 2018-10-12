@@ -4,7 +4,7 @@ import MarketPlace from "../Components/MarketPlace";
 
 class GetCurrencyDataPage extends Component {
   componentDidMount() {
-    fetch("http://localhost:5000/api/currency/marketplace")
+    fetch(`${process.env.REACT_APP_HOST}/api/currency/marketplace`)
       .then(res => res.json())
       .then(data => {
         this.props.dispatch({

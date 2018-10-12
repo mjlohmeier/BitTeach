@@ -4,7 +4,7 @@ import WalletPage from "../Components/WalletPage";
 
 class GetWalletData extends Component {
   componentDidMount() {
-    fetch(`http://localhost:5000/api/users/${this.props.currentUser.id}/wallet`)
+    fetch(`${process.env.REACT_API_URLS}/api/users/${this.props.currentUser.id}/wallet`)
       .then(res => res.json())
       .then(data => {
         this.props.dispatch({

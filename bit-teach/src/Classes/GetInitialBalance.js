@@ -5,29 +5,14 @@ import Dashboard from "../Components/Dashboard";
 class InitialBalance extends Component {
   componentDidMount() {
     fetch(
-      `http://localhost:5000/api/users/${this.props.currentUser.id}/balance`
+      `${process.env.REACT_API_URLS}/api/user/${this.props.currentUser.id}/coin_address`
     )
       .then(res => res.json())
       .then(data => {
         this.props.dispatch({
-          type: "SET_DOLLAR-BALANCE",
-          setBalance: data.initial_balance,
-          dollarBalance:data.initial_balance
+          type: "SET_COIN_ADDRESS",
+          setAddress: data.bit_coin_address
         });
-      })
-      .then(() => {
-        fetch(
-          `http://localhost:5000/api/user/${
-            this.props.currentUser.id
-          }/coin_address`
-        )
-          .then(res => res.json())
-          .then(data => {
-            this.props.dispatch({
-              type: "SET_COIN_ADDRESS",
-              setAddress: data.bit_coin_address
-            });
-          });
       })
       .catch(err => console.log(err));
   }
