@@ -27,6 +27,7 @@ const reducer = (state, action) => {
     localStorage.removeItem("user");
     localStorage.removeItem("dollarBalance");
     localStorage.removeItem("walletValues");
+    localStorage.removeItem("teachCoin");
     return {
       ...state,
       currentUser: {},
@@ -85,6 +86,7 @@ const reducer = (state, action) => {
       }
     };
   } else if (action.type === "BUY_TEACHCOIN") {
+    localStorage.setItem("teachCoin", action.teachCoin);
     let arrayOfBoughtCurrencies = state.boughtCurrencies.slice();
     arrayOfBoughtCurrencies.push(action.storeTeachCoin);
     return {

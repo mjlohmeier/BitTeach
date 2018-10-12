@@ -15,7 +15,7 @@ class SendCoinToWalletForm extends Component {
     const { dispatch, boughtCurrencies } = this.props;
     let sendToWallet = async state => {
       await fetch(
-        `${process.env.REACT_API_URLS}/api/users/${
+        `$${process.env.REACT_APP_HOST}/api/users/${
           this.props.currentUser.bit_coin_address
         }/wallet`,
         {

@@ -52,7 +52,8 @@ const MarketPlace = ({
                             onClick={() =>
                               dispatch({
                                 type: "BUY_TEACHCOIN",
-                                storeTeachCoin: teachCoinBalance
+                                storeTeachCoin: teachCoinBalance,
+                                teachCoin:teachCoinBalance
                               })
                             }
                           >

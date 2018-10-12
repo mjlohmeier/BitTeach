@@ -5,10 +5,11 @@ import Dashboard from "../Components/Dashboard";
 class InitialBalance extends Component {
   componentDidMount() {
     fetch(
-      `${process.env.REACT_API_URLS}/api/user/${this.props.currentUser.id}/coin_address`
+      `${process.env.REACT_APP_HOST}/api/user/${this.props.currentUser.id}/coin_address`
     )
       .then(res => res.json())
       .then(data => {
+        console.log(data)
         this.props.dispatch({
           type: "SET_COIN_ADDRESS",
           setAddress: data.bit_coin_address

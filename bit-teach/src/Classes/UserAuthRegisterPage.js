@@ -18,7 +18,7 @@ class UserAuthRegisterPage extends React.Component {
     const { dispatch } = this.props;
 
     let registerUser = user => {
-      return fetch(`${process.env.REACT_API_URLS}/api/users/register`, {
+      return fetch(`${process.env.REACT_APP_HOST}/api/users/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
