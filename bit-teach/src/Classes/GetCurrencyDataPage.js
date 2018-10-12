@@ -13,7 +13,7 @@ class GetCurrencyDataPage extends Component {
         });
       })
       .then(() => {
-        fetch("http://localhost:5000/api/currency/marketplace")
+        fetch(`${process.env.REACT_API_URLS}/api/currency/marketplace`)
           .then(res => res.json())
           .then(data => {
             let bitTeach = data[0].balance;
