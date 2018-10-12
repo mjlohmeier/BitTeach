@@ -15,7 +15,7 @@ class UserAuthLoginPage extends Component {
   render() {
     const { email, user_password } = this.state;
     const { dispatch } = this.props;
-
+  
     let loginUser = user => {
       return fetch("http://localhost:5000/api/users/login", {
         method: "POST",
@@ -52,7 +52,7 @@ class UserAuthLoginPage extends Component {
     };
 
     return (
-      <div className="container p-5" style={{ marginBottom: "30%" }}>
+      <div className="container p-5">
         <div className="row justify-content-center">
           <UserLoginForm
             email={email}

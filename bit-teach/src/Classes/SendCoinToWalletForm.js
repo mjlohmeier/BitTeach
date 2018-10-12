@@ -49,7 +49,7 @@ class SendCoinToWalletForm extends Component {
     };
 
     return (
-      <div className="container">
+      <div className="container" style={{width:'20rem'}}>
         <div className="row justify-content-center registreForm bg-white">
           <DisplayCoinPurchaseForm
             submitForm={submitForm}

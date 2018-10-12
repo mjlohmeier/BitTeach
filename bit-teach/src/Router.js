@@ -4,12 +4,13 @@ import LandingPage from "./Components/LandingPage";
 import UserAuthRegisterPage from "./Classes/UserAuthRegisterPage";
 import UserAuthLoginPage from "./Classes/UserAuthLoginPage";
 import NotificationPage from "./Components/NotificationsPage";
-import GetCurrencyDataPage from './Classes/GetCurrencyDataPage';
+import GetCurrencyDataPage from "./Classes/GetCurrencyDataPage";
 import TutorialPage from "./Tutorials/TutorialPage";
 import WalletTutorial from "./Tutorials/WalletTutorial";
-import WalletPage from './Components/WalletPage';
-import Footer from './Components/Footer';
-import InitialBalance from './Classes/GetInitialBalance';
+import GetWalletData from "./Classes/GetWalletData";
+import Footer from "./Components/Footer";
+import InitialBalance from "./Classes/GetInitialBalance";
+import NotFound from "./Components/NotFound";
 
 const Router = () => {
   return (
@@ -20,13 +21,18 @@ const Router = () => {
           <Route exact path="/register" component={UserAuthRegisterPage} />
           <Route exact path="/login" component={UserAuthLoginPage} />
           <Route exact path="/tutorials" component={TutorialPage} />
-          <Route exact path="/tutorials/markettutorial" component={WalletTutorial} />
+          <Route
+            exact
+            path="/tutorials/markettutorial"
+            component={WalletTutorial}
+          />
           <Route exact path="/notifications" component={NotificationPage} />
           <Route exact path="/dashboard" component={InitialBalance} />
-          <Route exact path="/marketplace" component={GetCurrencyDataPage} /> 
-          <Route exact path="/wallet" component={WalletPage}/>
+          <Route exact path="/marketplace" component={GetCurrencyDataPage} />
+          <Route exact path="/wallet" component={GetWalletData} />
+          <Route exact path="*" component={NotFound} />
         </Switch>
-        <Footer/>
+        <Footer />
       </div>
     </HashRouter>
   );

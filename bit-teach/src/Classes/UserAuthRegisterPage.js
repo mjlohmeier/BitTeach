@@ -48,7 +48,7 @@ class UserAuthRegisterPage extends React.Component {
     };
 
     return (
-      <div className="container p-5" style={{ marginBottom: "23%" }}>
+      <div className="container p-5">
         <div className="row justify-content-center">
           <UserRegisterForm
             email={email}

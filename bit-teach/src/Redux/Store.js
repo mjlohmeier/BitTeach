@@ -6,7 +6,8 @@ let initialState = {
   teachCoinBalance:0,
   wallet: {
     bitCoinAddress:'',
-    currencies:[]
+    currencies:[],
+    storedValues:[]
   },
   marketPlace: [],
   bitTeach:{},
