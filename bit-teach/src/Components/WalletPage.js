@@ -8,9 +8,9 @@ const WalletPage = ({ wallet, teachCoinBalance }) => {
       <NavBar />
       <div className="container">
         <div>Your current balance is TEA {teachCoinBalance}</div>
-            <div>
-              <p> Your coin address: {wallet.bitCoinAddress}</p>
-            </div>
+        <div>
+          <p> Your coin address: {wallet.bitCoinAddress}</p>
+        </div>
         {wallet.currencies.map(currency => {
           return (
             <div className="card-group" key={currency.id}>
@@ -19,8 +19,7 @@ const WalletPage = ({ wallet, teachCoinBalance }) => {
                 style={{ width: "18rem", height: "5rem" }}
               >
                 <div className="card-title">
-                  <p className="p-2">Currency Name: {currency.currency_name}</p>
-                  <p>Market Value: {currency.marketvalue}</p>
+                  <p>Bought Coin: {wallet.storedValues}</p>
                 </div>
               </div>
             </div>

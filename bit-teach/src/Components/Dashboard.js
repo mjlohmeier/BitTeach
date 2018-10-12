@@ -4,7 +4,7 @@ import BitCoinResources from "./BitCoinResources";
 
 const Dashboard = ({ currentUser, balance }) => {
   return (
-    <div style={{ marginBottom: "26%" }}>
+    <div>
       <NavBar />
       <div className="container p-5">
         <div className="row justify-content-center">

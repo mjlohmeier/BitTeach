@@ -9,7 +9,8 @@ const reducer = (state, action) => {
       ],
       currentUser: action.user
     };
-  } else if (action.type === "SET_BALANCE") {
+  } else if (action.type === "SET_DOLLAR-BALANCE") {
+    localStorage.setItem("dollarBalance", action.dollarBalance);
     return {
       ...state,
       balance: action.setBalance
@@ -24,6 +25,8 @@ const reducer = (state, action) => {
   } else if (action.type === "LOGOUT") {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("dollarBalance");
+    localStorage.removeItem("walletValues");
     return {
       ...state,
       currentUser: {},
@@ -47,7 +50,6 @@ const reducer = (state, action) => {
     return {
       ...state,
       balance: state.balance + action.currency.balance,
-      // teachCoinBalance:state.teachCoinBalance+ action.currency.price,
       notifications: [
         ...state.notifications,
         { id: 2, type: "boughtCoin", message: "You have purchased new coin" }
@@ -73,29 +75,26 @@ const reducer = (state, action) => {
         currencies: action.addToWallet
       }
     };
-  }// else if (action.type === 'ADD_TO_TEACH_COIN_BALACE') {
-  //   let arrayOfBoughtCurrencies = state.boughtCurrencies.slice()
-  //   arrayOfBoughtCurrencies.push(action.storeTeachCoin)
-  //   return {
-  //     ...state,
-  //     boughtCurrencies: arrayOfBoughtCurrencies,
-  //     teachCoinBalance: action.addToTeachCoinBalance + 100,
-  //     balance: state.balance - 100
-  //   }
-  //}
-  else if (action.type === "BUY_TEACHCOIN") {
-    let arrayOfBoughtCurrencies = state.boughtCurrencies.slice()
-    arrayOfBoughtCurrencies.push(action.storeTeachCoin)
+  } else if (action.type === "GET_WALLET_VALUES") {
+    localStorage.setItem("walletValues", action.storedWalletValues);
     return {
       ...state,
-      //balance should be redefined to specifically refer to dollars
+      wallet: {
+        ...state.wallet,
+        storedValues: action.storedValues
+      }
+    };
+  } else if (action.type === "BUY_TEACHCOIN") {
+    let arrayOfBoughtCurrencies = state.boughtCurrencies.slice();
+    arrayOfBoughtCurrencies.push(action.storeTeachCoin);
+    return {
+      ...state,
       boughtCurrencies: arrayOfBoughtCurrencies,
       balance: state.balance - 100,
       teachCoinBalance: state.teachCoinBalance + 100,
       notifications: [
         ...state.notifications,
         { id: 3, type: "BoughtCoin", message: "You have bought coin" }
-        //probably shouldn't give a notification every time you click
       ]
     };
   }

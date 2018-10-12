@@ -6,7 +6,7 @@ const { JwtPassword } = require("../../database");
 
 const { DB } = require("../../database");
 
-routes.post("/register", (req, res) => {
+routes.post("/users/register", (req, res) => {
   bcrypt.hash(req.body.user_password, 10, (err, hash) => {
     if (err) {
       return res.status(500).json({ msg: err });
@@ -32,7 +32,7 @@ routes.post("/register", (req, res) => {
   });
 });
 
-routes.post("/login", (req, res) => {
+routes.post("/users/login", (req, res) => {
   let users = {
     email: req.body.email,
     user_password: req.body.user_password

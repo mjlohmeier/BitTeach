@@ -10,8 +10,9 @@ class InitialBalance extends Component {
       .then(res => res.json())
       .then(data => {
         this.props.dispatch({
-          type: "SET_BALANCE",
-          setBalance: data.initial_balance
+          type: "SET_DOLLAR-BALANCE",
+          setBalance: data.initial_balance,
+          dollarBalance:data.initial_balance
         });
       })
       .then(() => {
@@ -27,7 +28,8 @@ class InitialBalance extends Component {
               setAddress: data.bit_coin_address
             });
           });
-      }).catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
   }
 
   render() {

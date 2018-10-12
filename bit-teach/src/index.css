@@ -1,11 +1,12 @@
-html,body {
+html,
+body {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   box-sizing: border-box;
-  background:rgb(194, 220, 236);
+  background: rgb(194, 220, 236);
 }
 
 :root {
@@ -18,6 +19,13 @@ html,body {
 
 .img {
   width: 100%;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .img-landing {
@@ -37,11 +45,11 @@ html,body {
 }
 
 .login-link {
-  color:black;
+  color: black;
 }
 
 .navLink {
-  color:black;
+  color: black;
   text-decoration: none;
 }
 
