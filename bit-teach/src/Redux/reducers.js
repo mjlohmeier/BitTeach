@@ -9,12 +9,6 @@ const reducer = (state, action) => {
       ],
       currentUser: action.user
     };
-  } else if (action.type === "SET_DOLLAR-BALANCE") {
-    localStorage.setItem("dollarBalance", action.dollarBalance);
-    return {
-      ...state,
-      balance: action.setBalance
-    };
   } else if (action.type === "LOGIN") {
     localStorage.setItem("token", action.token);
     localStorage.setItem("user", JSON.stringify(action.user));
@@ -22,20 +16,20 @@ const reducer = (state, action) => {
       ...state,
       currentUser: action.user
     };
-  } else if (action.type === "LOGOUT") {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    localStorage.removeItem("dollarBalance");
-    localStorage.removeItem("walletValues");
-    localStorage.removeItem("teachCoin");
+  } else if (action.type === "SET_DOLLAR_BALANCE") {
+    localStorage.setItem("dollarBalance", action.dollarBalance);
     return {
       ...state,
-      currentUser: {},
-      balance: 0,
-      wallet: {},
-      marketPlace: [],
-      bitTeach: {},
-      boughtCurrencies: []
+      DollarBalance: action.setBalance
+    };
+  } else if (action.type === "SET_COIN_ADDRESS") {
+    localStorage.setItem('walletAddress', action.walletAddress)
+    return {
+      ...state,
+      wallet: {
+        ...state.wallet,
+        bitCoinAddress: action.setAddress
+      }
     };
   } else if (action.type === "SET_MARKETPLACE") {
     return {
@@ -50,30 +44,41 @@ const reducer = (state, action) => {
   } else if (action.type === "GET_DOLLARS") {
     return {
       ...state,
-      balance: state.balance + action.currency.balance,
+      DollarBalance: state.DollarBalance + 100,
       notifications: [
         ...state.notifications,
-        { id: 2, type: "boughtCoin", message: "You have purchased new coin" }
+        {
+          id: 2,
+          type: "boughtCoin",
+          message: `You have purchased ${state.DollarBalance}`
+        }
       ]
     };
-  } else if (action.type === "SET_COIN_ADDRESS") {
+  } else if (action.type === "BUY_TEACHCOIN") {
+    localStorage.setItem("teachCoin", action.teachCoin);
+    let arrayOfBoughtCurrencies = state.boughtCurrencies.slice();
+    arrayOfBoughtCurrencies.push(action.storeTeachCoin);
     return {
       ...state,
-      wallet: {
-        ...state.wallet,
-        bitCoinAddress: action.setAddress
-      }
+      boughtCurrencies: arrayOfBoughtCurrencies,
+      DollarBalance: state.DollarBalance - 100,
+      teachCoinBalance: state.teachCoinBalance + 100,
+      notifications: [
+        ...state.notifications,
+        { id: 3, type: "BoughtCoin", message: `You have bought ${state.teachCoinBalance}`}
+      ]
     };
   } else if (action.type === "ADD_TO_WALLET") {
     let filteredCurrencies = state.boughtCurrencies.filter(
-      item => item !== action.id
+      item => item.id !== action.id
     );
     return {
       ...state,
       boughtCurrencies: filteredCurrencies,
       wallet: {
         ...state.wallet,
-        currencies: action.addToWallet
+        currencies: action.addToWallet,
+        storedValues:action.addToWallet
       }
     };
   } else if (action.type === "GET_WALLET_VALUES") {
@@ -85,19 +90,21 @@ const reducer = (state, action) => {
         storedValues: action.storedValues
       }
     };
-  } else if (action.type === "BUY_TEACHCOIN") {
-    localStorage.setItem("teachCoin", action.teachCoin);
-    let arrayOfBoughtCurrencies = state.boughtCurrencies.slice();
-    arrayOfBoughtCurrencies.push(action.storeTeachCoin);
+  } else if (action.type === "LOGOUT") {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("dollarBalance");
+    localStorage.removeItem("walletAddress");
+    localStorage.removeItem("walletValues");
+    localStorage.removeItem("teachCoin");
     return {
       ...state,
-      boughtCurrencies: arrayOfBoughtCurrencies,
-      balance: state.balance - 100,
-      teachCoinBalance: state.teachCoinBalance + 100,
-      notifications: [
-        ...state.notifications,
-        { id: 3, type: "BoughtCoin", message: "You have bought coin" }
-      ]
+      currentUser: {},
+      balance: 0,
+      wallet: {},
+      marketPlace: [],
+      bitTeach: {},
+      boughtCurrencies: []
     };
   }
   return state;

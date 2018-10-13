@@ -34,9 +34,14 @@ class UserAuthLoginPage extends Component {
             token:body.token
           });
           this.props.dispatch({
-            type: "SET_DOLLAR-BALANCE",
+            type: "SET_DOLLAR_BALANCE",
             setBalance: body.data.initial_balance,
             dollarBalance:body.data.initial_balance
+          });
+          this.props.dispatch({
+            type: "SET_COIN_ADDRESS",
+            setAddress: body.data.bit_coin_address,
+            walletAddress:body.data.bit_coin_address
           });
         })
         .catch(err => {

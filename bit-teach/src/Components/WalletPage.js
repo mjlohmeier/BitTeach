@@ -11,15 +11,15 @@ const WalletPage = ({ wallet, teachCoinBalance }) => {
         <div>
           <p> Your coin address: {wallet.bitCoinAddress}</p>
         </div>
-        {wallet.currencies.map(currency => {
+        {wallet.currencies.map((currency,i) => {
           return (
-            <div className="card-group" key={currency.id}>
+            <div className="card-group" key={i}>
               <div
                 className="card forms mb-2"
                 style={{ width: "18rem", height: "5rem" }}
               >
                 <div className="card-title">
-                  <p>Bought Coin: {wallet.storedValues}</p>
+                  <p>Bought Coin: {currency}</p>
                 </div>
               </div>
             </div>
