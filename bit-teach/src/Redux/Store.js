@@ -2,7 +2,7 @@ import { createStore } from "redux";
 import reducer from "./reducers";
 
 let initialState = {
-  balance: 0,
+  DollarBalance: 0,
   teachCoinBalance:0,
   wallet: {
     bitCoinAddress:'',

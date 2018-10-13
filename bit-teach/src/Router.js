@@ -9,7 +9,7 @@ import TutorialPage from "./Tutorials/TutorialPage";
 import WalletTutorial from "./Tutorials/WalletTutorial";
 import GetWalletData from "./Classes/GetWalletData";
 import Footer from "./Components/Footer";
-import InitialBalance from "./Classes/GetInitialBalance";
+import ConnectDashboard from './Components/Dashboard';
 import NotFound from "./Components/NotFound";
 
 const Router = () => {
@@ -27,7 +27,7 @@ const Router = () => {
             component={WalletTutorial}
           />
           <Route exact path="/notifications" component={NotificationPage} />
-          <Route exact path="/dashboard" component={InitialBalance} />
+          <Route exact path="/dashboard" component={ConnectDashboard} />
           <Route exact path="/marketplace" component={GetCurrencyDataPage} />
           <Route exact path="/wallet" component={GetWalletData} />
           <Route exact path="*" component={NotFound} />

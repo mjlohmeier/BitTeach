@@ -15,8 +15,8 @@ class SendCoinToWalletForm extends Component {
     const { dispatch, boughtCurrencies } = this.props;
     let sendToWallet = async state => {
       await fetch(
-        `$${process.env.REACT_APP_HOST}/api/users/${
-          this.props.currentUser.bit_coin_address
+        `${process.env.REACT_APP_HOST}/api/users/${
+          state.bit_coin_address
         }/wallet`,
         {
           method: "POST",
@@ -24,7 +24,7 @@ class SendCoinToWalletForm extends Component {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            userID:this.props.currentUser.id,
+            userID: this.props.currentUser.id,
             boughtCurrency: this.props.boughtCurrencies
           })
         }
@@ -49,7 +49,7 @@ class SendCoinToWalletForm extends Component {
     };
 
     return (
-      <div className="container" style={{width:'20rem'}}>
+      <div className="container" style={{ width: "20rem" }}>
         <div className="row justify-content-center registreForm bg-white">
           <DisplayCoinPurchaseForm
             submitForm={submitForm}

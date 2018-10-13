@@ -8,7 +8,7 @@ const MarketPlace = ({
   marketPlace,
   dispatch,
   history,
-  balance,
+  DollarBalance,
   teachCoinBalance
 }) => {
   return (
@@ -27,7 +27,7 @@ const MarketPlace = ({
                     <div className="card-body">
                       <div className="card-text">
                         <p className="card-text">
-                          Dollar balance is $ {balance}
+                          Dollar balance is $ {DollarBalance}
                         </p>
                         <p className="card-text">
                           TeachCoin balance is TEA {teachCoinBalance}
@@ -41,7 +41,7 @@ const MarketPlace = ({
                             onClick={() =>
                               dispatch({
                                 type: "GET_DOLLARS",
-                                currency: currency
+                                DollarBalance: DollarBalance
                               })
                             }
                           >
@@ -90,7 +90,7 @@ const MarketPlace = ({
 
 const ConnectMarketPlace = connect(state => ({
   marketPlace: state.marketPlace,
-  balance: state.balance,
+  DollarBalance: state.DollarBalance,
   bitTeach: state.bitTeach,
   teachCoinBalance: state.teachCoinBalance
 }));

@@ -1,8 +1,9 @@
 import React from "react";
 import NavBar from "./Navigation";
 import BitCoinResources from "./BitCoinResources";
+import { connect } from "react-redux";
 
-const Dashboard = ({ currentUser, balance }) => {
+const Dashboard = ({ currentUser, DollarBalance }) => {
   return (
     <div>
       <NavBar />
@@ -11,7 +12,7 @@ const Dashboard = ({ currentUser, balance }) => {
           <div className="jumbotron">
             <div>
               <p>
-                Welcome {currentUser.user_name} your balance is: ${balance}
+                Welcome {currentUser.user_name} your balance is: ${DollarBalance}
               </p>
             </div>
           </div>
@@ -33,4 +34,8 @@ const Dashboard = ({ currentUser, balance }) => {
   );
 };
 
-export default Dashboard;
+const ConnectDashboard = connect(state => ({
+  DollarBalance: state.DollarBalance,
+  currentUser: state.currentUser
+}));
+export default ConnectDashboard(Dashboard);
