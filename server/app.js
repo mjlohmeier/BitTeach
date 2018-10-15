@@ -11,7 +11,7 @@ const wallet = require('./routes/api/wallet');
 
 const app = express();
 const static = express.static;
-app.use(static('../client/build'));
+app.use(static('../bit-teach/build'));
 app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
