@@ -10,7 +10,6 @@ let initialState = {
     storedValues:[]
   },
   marketPlace: [],
-  bitTeach:{},
   boughtCurrencies:[],
   currentUser:JSON.parse(localStorage.getItem('user') || '{}'),
   notifications: []

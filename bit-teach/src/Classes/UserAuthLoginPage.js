@@ -15,7 +15,7 @@ class UserAuthLoginPage extends Component {
   render() {
     const { email, user_password } = this.state;
     const { dispatch } = this.props;
-  
+
     let loginUser = user => {
       return fetch(`${process.env.REACT_APP_HOST}/api/users/login`, {
         method: "POST",
@@ -30,22 +30,35 @@ class UserAuthLoginPage extends Component {
         .then(body => {
           dispatch({
             type: "LOGIN",
-            user:body.data,
-            token:body.token
+            user: body.data,
+            token: body.token
           });
           this.props.dispatch({
             type: "SET_DOLLAR_BALANCE",
             setBalance: body.data.initial_balance,
-            dollarBalance:body.data.initial_balance
+            dollarBalance: body.data.initial_balance
           });
           this.props.dispatch({
             type: "SET_COIN_ADDRESS",
             setAddress: body.data.bit_coin_address,
-            walletAddress:body.data.bit_coin_address
+            walletAddress: body.data.bit_coin_address
           });
         })
         .catch(err => {
           console.log(err);
+        });
+    };
+
+    let getTeachCoin = () => {
+      fetch(`${process.env.REACT_APP_HOST}/api/currency/marketplace`)
+        .then(res => res.json())
+        .then(data => {
+          let bitTeach = data[0].balance;
+          this.props.dispatch({
+            type: "SET_BITTEACH",
+            setBitTeach: bitTeach,
+            teachCoin: bitTeach
+          });
         });
     };
 
@@ -58,6 +71,7 @@ class UserAuthLoginPage extends Component {
     let submitForm = e => {
       e.preventDefault();
       loginUser(this.state);
+      getTeachCoin();
       this.props.history.push("/dashboard");
     };
 
