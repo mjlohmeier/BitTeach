@@ -29,10 +29,15 @@ const MarketPlace = ({
                         <p className="card-text">
                           Dollar balance is $ {DollarBalance}
                         </p>
-                        <p className="card-text">
-                          TeachCoin balance is TEA {teachCoinBalance}
-                        </p>
-                        <p>Coin Price: $ {currency.balance} </p>
+                        {teachCoinBalance ? (
+                          <p className="card-text p-2">
+                            TeachCoin balance is TEA {teachCoinBalance}
+                          </p>
+                        ) : (
+                          <p className="card-text p-2">
+                            New TeachCoin Balance is TEA {teachCoinBalance}
+                          </p>
+                        )}
                       </div>
                       <div className="row justify-content-center">
                         <div className="col-md-6">
@@ -53,7 +58,7 @@ const MarketPlace = ({
                               dispatch({
                                 type: "BUY_TEACHCOIN",
                                 storeTeachCoin: teachCoinBalance,
-                                teachCoin: teachCoinBalance
+                                storeinWallet: teachCoinBalance
                               })
                             }
                           >

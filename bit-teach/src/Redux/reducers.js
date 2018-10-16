@@ -23,7 +23,7 @@ const reducer = (state, action) => {
       DollarBalance: action.setBalance
     };
   } else if (action.type === "SET_COIN_ADDRESS") {
-    localStorage.setItem('walletAddress', action.walletAddress)
+    localStorage.setItem("walletAddress", action.walletAddress);
     return {
       ...state,
       wallet: {
@@ -37,6 +37,7 @@ const reducer = (state, action) => {
       marketPlace: action.marketplaceValues
     };
   } else if (action.type === "SET_BITTEACH") {
+    localStorage.setItem("teachCoin", action.teachCoin);
     return {
       ...state,
       teachCoinBalance: action.setBitTeach
@@ -55,7 +56,6 @@ const reducer = (state, action) => {
       ]
     };
   } else if (action.type === "BUY_TEACHCOIN") {
-    localStorage.setItem("teachCoin", action.teachCoin);
     let arrayOfBoughtCurrencies = state.boughtCurrencies.slice();
     arrayOfBoughtCurrencies.push(action.storeTeachCoin);
     return {
@@ -65,10 +65,19 @@ const reducer = (state, action) => {
       teachCoinBalance: state.teachCoinBalance + 100,
       notifications: [
         ...state.notifications,
-        { id: 3, type: "BoughtCoin", message: `You have bought ${state.teachCoinBalance}`}
-      ]
+        {
+          id: 3,
+          type: "BoughtCoin",
+          message: `You have bought ${state.teachCoinBalance}`
+        }
+      ],
+      wallet: {
+        ...state.wallet,
+        storedValues: action.storeinWallet
+      }
     };
   } else if (action.type === "ADD_TO_WALLET") {
+    localStorage.setItem("saved", action.saved);
     let filteredCurrencies = state.boughtCurrencies.filter(
       item => item.id !== action.id
     );
@@ -77,8 +86,7 @@ const reducer = (state, action) => {
       boughtCurrencies: filteredCurrencies,
       wallet: {
         ...state.wallet,
-        currencies: action.addToWallet,
-        storedValues:action.addToWallet
+        currencies: action.addToWallet
       }
     };
   } else if (action.type === "GET_WALLET_VALUES") {
@@ -97,6 +105,7 @@ const reducer = (state, action) => {
     localStorage.removeItem("walletAddress");
     localStorage.removeItem("walletValues");
     localStorage.removeItem("teachCoin");
+    localStorage.removeItem("saved");
     return {
       ...state,
       currentUser: {},

@@ -44,7 +44,8 @@ class SendCoinToWalletForm extends Component {
       sendToWallet(this.state);
       dispatch({
         type: "ADD_TO_WALLET",
-        addToWallet: boughtCurrencies
+        addToWallet: boughtCurrencies,
+        saved: boughtCurrencies.reduce((prev, curr) => prev + curr)
       });
     };
 
