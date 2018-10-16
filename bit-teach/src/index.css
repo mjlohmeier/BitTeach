@@ -60,8 +60,8 @@ body {
   padding: 1rem;
 }
 
-@media screen and (min-width:760px) {
+@media screen and (min-width:425px) {
   .img-landing {
-    width: 70%;
+    width: 100%;
   }
 }

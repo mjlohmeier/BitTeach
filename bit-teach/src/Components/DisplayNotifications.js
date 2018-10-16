@@ -2,8 +2,8 @@ import React from "react";
 
 const Notifications = ({ notifications }) => {
   return (
-    <div className="container">
-      <div className="row justify-content-center">
+    <div>
+      <div>
         {notifications.map(notification => {
           return (
             <div key={notification.id}>

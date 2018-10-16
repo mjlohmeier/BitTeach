@@ -16,7 +16,7 @@ const MarketPlace = ({
       <NavBar />
       <div className="container pt-3">
         <div className="row justify-content-center">
-          <div className="col-md-6">
+          <div className=" xs-12 md-6">
             {marketPlace.map(currency => {
               return (
                 <div className="card-group" key={currency.id}>
@@ -53,7 +53,7 @@ const MarketPlace = ({
                               dispatch({
                                 type: "BUY_TEACHCOIN",
                                 storeTeachCoin: teachCoinBalance,
-                                teachCoin:teachCoinBalance
+                                teachCoin: teachCoinBalance
                               })
                             }
                           >
@@ -67,12 +67,16 @@ const MarketPlace = ({
               );
             })}
           </div>
-          <div className="col-md-6">
-            <div className="col">
+          <div className="row justify-content-center">
+            <div className=" xs-12 md-6">
               <SendCoinToWalletForm />
             </div>
           </div>
-          <div className="container mt-5">
+        </div>
+      </div>
+      <div className="container p-2">
+        <div className="row justify-content-center">
+          <div className="xs-12 md-6 pt-2">
             <button
               onClick={() => {
                 history.push("/wallet");
